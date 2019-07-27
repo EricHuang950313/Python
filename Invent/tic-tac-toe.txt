@@ -29,9 +29,11 @@ function "getComputerMove"
     Tic-Tac-Toe AI
     1.Check if AI win
     2.stop player win
-    3.corner
-    4.center 
-    5.side
+    3.center
+    4.dragon
+    5.doubleGo
+    6.corner 
+    7.side
 
 function "isBoardFull"
     return Trun if the Board is full 
