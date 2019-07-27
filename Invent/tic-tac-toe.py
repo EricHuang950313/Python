@@ -13,7 +13,6 @@ def drawboard(board):
     print(board[4] + "|" + board[5] + "|" + board[6])
     print("-+-+-")
     print(board[1] + "|" + board[2] + "|" + board[3])
-    print("-+-+-")
 
 
 def inputPlayerXO():
@@ -95,6 +94,50 @@ def chooseRandomMoveFromList(board, movelist):
         return None
 
 
+def dragon(board, computerLetter):
+    two = []
+    for i in range(1, 10):
+        D_boardCopy = copyBoard(board)
+        if isSpaceFree(D_boardCopy, i) or D_boardCopy[i] == computerLetter:
+            continue
+        else:
+            two += [int(i)]
+    if two == [1, 6]:  #[1, 8] or [3, 8]:
+        return 3
+    elif two == [6, 7]:
+        return 9
+    elif two == [3, 4]:
+        return 1
+    elif two == [4, 9]:
+        return 7
+    elif two == [2, 7]:
+        return 1
+    elif two == [2, 9]:
+        return 3
+    elif two == [1, 8]:
+        return 7
+    elif two == [3, 8]:
+        return 9
+    else:
+        return None 
+
+
+def doubleGo(board, computerLetter):
+    three = []
+    for i in range(1, 10):
+        D_boardCopy = copyBoard(board)
+        if isSpaceFree(D_boardCopy, i) or D_boardCopy[i] == computerLetter:
+            continue
+        else:
+            three += [int(i)]
+    if three == [1, 9]:
+        return 6
+    elif three == [3, 7]:
+        return 4
+    else:
+         return None
+
+
 def getComputerMove(board, computerLetter):
     # Computer letter and player letter
     if computerLetter == "X":
@@ -118,14 +161,27 @@ def getComputerMove(board, computerLetter):
             makeMove(boardCopy, playerLetter, i)
             if isWinner(boardCopy, playerLetter):
                 return i
-    # corner  
-    move = chooseRandomMoveFromList(board, [2, 4, 6, 8])
-    if move != None:
-        return move
+    # dragon
+    Vdragon = dragon(board, computerLetter)
+    if Vdragon != None:
+        return Vdragon
+
+    # doubleGo
+    VdoubleGo = doubleGo(board, computerLetter)
+    if VdoubleGo != None:
+        return VdoubleGo
+
     # center
     if isSpaceFree(board, 5):
         return 5
-    return chooseRandomMoveFromList(board, [1, 3, 7, 9])
+
+    # corner  
+    move = chooseRandomMoveFromList(board, [1, 3, 7, 9])
+    if move != None:
+        return move
+
+    #side
+    return chooseRandomMoveFromList(board, [2, 4, 6, 8])
 
 
 def isBoardFull(board):
@@ -133,6 +189,7 @@ def isBoardFull(board):
         if isSpaceFree(board, i):
             return False
     return True
+
 
 
 print("!!!!! Welcome to Tic-Tac-Toe !!!!!")
