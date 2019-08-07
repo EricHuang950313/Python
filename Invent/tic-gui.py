@@ -271,7 +271,7 @@ def computerMove(board, computerLetter):
     move = getComputerMove(board, computerLetter)
     makeMove(board, computerLetter, move)
     displayCanvas(board)
-    if isWinner(board, playerLetter):
+    if isWinner(board, computerLetter):
         messagebox.showinfo("Lose", "Oh No! You lose the computer, it was awful.")
         os._exit(0)
     else:
