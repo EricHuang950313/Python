@@ -17,7 +17,7 @@ def music():
     # repeat the music
     pygame.mixer.music.load("Up_Above.mp3")
     pygame.mixer.music.play(loops=-1)
-#music()
+music()
 
 # open tkinter and set the interface
 window = tk.Tk()
