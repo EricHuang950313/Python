@@ -55,7 +55,7 @@ def copyBoard(board):
 
 def isSpaceFree(board, move):
     # return True or False
-    return board[move] == ""
+    return board[move] == " "
 
 
 def chooseRandomMoveFromList(board, movelist):
@@ -176,7 +176,7 @@ def whoGoFirst():
 # ---< GUI Start >---
 
 
-def inputPlayerXO(board, turn):
+def inputPlayerXO(board):
     # ask player to choose that player want to be "O" or "X"
 
     global OX, label, entry, button
@@ -186,11 +186,11 @@ def inputPlayerXO(board, turn):
     label.pack(pady=10)
     entry = tk.Entry(textvariable=OX, font=("微軟正黑體", 15))
     entry.pack(pady=10)
-    button = tk.Button(window, text="= Confirm =", command=partial(setXO_goFirst, board, turn), font=("微軟正黑體", 15))
+    button = tk.Button(window, text="= Confirm =", command=partial(setXO_goFirst, board), font=("微軟正黑體", 15))
     button.pack(pady=10)
     
     
-def setXO_goFirst(board, turn):
+def setXO_goFirst(board):
     # set player's XO and computer's XO and choose who will go first, finally, display them
 
     global playerLetter, computerLetter
@@ -218,7 +218,7 @@ def setXO_goFirst(board, turn):
         LabelP.destroy()
         LabelC.destroy()
         LabelF.destroy()
-        displayCanvas(board, turn)
+        displayCanvas(board)
     else:
         messagebox.showinfo("Error", "Please input \"O\" or \"X\".")
 
@@ -249,35 +249,67 @@ def num(i, j):
             return 9
 
 
-def displayCanvas(board, turn):
+def displayCanvas(board):
     for i in range(70, 280, 70):           
         for j in range(70, 280, 70):
             tk.Label(window, text=board[num(j/70, i/70)], font=("微軟正黑體", 24)).place(x=i-50, y=j-50, width=50, height=50)
-    getPlayerMove(board, turn)
-
-
-
-def getPlayerMove(board, turn):
     
-    global place, buttonB, turn2, userInput
+    tk.Label(window, text=1, font=("微軟正黑體", 18)).place(x=260, y=20, width=25, height=25)  
+    tk.Label(window, text=2, font=("微軟正黑體", 18)).place(x=300, y=20, width=25, height=25)
+    tk.Label(window, text=3, font=("微軟正黑體", 18)).place(x=340, y=20, width=25, height=25)  
+    tk.Label(window, text=4, font=("微軟正黑體", 18)).place(x=260, y=60, width=25, height=25)  
+    tk.Label(window, text=5, font=("微軟正黑體", 18)).place(x=300, y=60, width=25, height=25)
+    tk.Label(window, text=6, font=("微軟正黑體", 18)).place(x=340, y=60, width=25, height=25)  
+    tk.Label(window, text=7, font=("微軟正黑體", 18)).place(x=260, y=100, width=25, height=25)  
+    tk.Label(window, text=8, font=("微軟正黑體", 18)).place(x=300, y=100, width=25, height=25)
+    tk.Label(window, text=9, font=("微軟正黑體", 18)).place(x=340, y=100, width=25, height=25)  
+    getPlayerMove(board)
+
+
+def computerMove(board, computerLetter):
+    global turn
+    move = getComputerMove(board, computerLetter)
+    makeMove(board, computerLetter, move)
+    displayCanvas(board)
+    if isWinner(board, playerLetter):
+        messagebox.showinfo("Lose", "Oh No! You lose the computer, it was awful.")
+        os._exit(0)
+    else:
+        if isBoardFull(board):
+            messagebox.showinfo("Tie", "Oh, the game is a tie.")
+            os._exit(0)
+        else:
+            getPlayerMove(board)
+            turn = "player"
+
+def getPlayerMove(board):
+    
+    global place, buttonB, userInput, times
     place = tk.StringVar()
     
-    turn2 = tk.Label(window, text="Turn :\n "+turn, font=("微軟正黑體", 20), bg="light yellow", fg="dark blue")
-    turn2.place(x=240, y=10)
-    userInput = tk.Entry(textvariable=place, font=("微軟正黑體", 20), width=10)
-    userInput.place(x=240, y=100)
-    buttonB = tk.Button(window, text="= Confirm =", command=partial(checkPlayerMove, board, turn), font=("微軟正黑體", 15))
-    buttonB.place(x=240, y=150)
-
-def checkPlayerMove(board, turn):
-    global move
-    if place.get() not in "1 2 3 4 5 6 7 8 9".split() or not isSpaceFree(board, int(place.get())):
-        messagebox.showinfo("Error", "Please input \"1\" ~ \"9\".")
+    if turn == "computer" and times == 0:
+        cp = "= Start ="
+        times = 1
     else:
-        move = int(place.get())
+        cp = "= Confirm ="
+        times = 1
+    userInput = tk.Entry(textvariable=place, font=("微軟正黑體", 20), width=10)
+    userInput.place(x=240, y=150)
+    buttonB = tk.Button(window, text=cp , command=partial(checkPlayerMove, board), font=("微軟正黑體", 15))
+    buttonB.place(x=240, y=200)
+    
+
+def checkPlayerMove(board):
+    global move
     if turn == "player":
+        if place.get() not in "1 2 3 4 5 6 7 8 9".split() or not isSpaceFree(board, int(place.get())):
+            messagebox.showinfo("Error", "Please input \"1\" ~ \"9\", or input the other space place.\nThe game will close......")
+            os._exit(0)
+        else:
+            move = int(place.get())
+
         makeMove(board, playerLetter, move)
-        displayCanvas(board, turn)
+        displayCanvas(board)
         if isWinner(board, playerLetter):
             messagebox.showinfo("Win", "Wow! You win the computer, you are so strong!")
             os._exit(0)
@@ -285,29 +317,15 @@ def checkPlayerMove(board, turn):
             if isBoardFull(board):
                 messagebox.showinfo("Tie", "Oh, the game is a tie.")
                 os._exit(0)
-            '''else:
-                turn = "computer"'''
-    '''else:
-        print(1)
-        # Computer's turn
-        move = getComputerMove(board, computerLetter)
-        makeMove(board, computerLetter, move)
-
-        if isWinner(board, computerLetter):
-            messagebox.showinfo("Lose", "Oh no! You lose the Computer. It was awful!")
-            os._exit(0)
-        else:
-            if isBoardFull(theBoard):
-                messagebox.showinfo("Tie", "Oh, the game is a tie.")
-                os._exit(0)
             else:
-                turn = "player"'''
-                
+                computerMove(board, computerLetter)
+    else:
+         computerMove(board, computerLetter)     
 
 
-
-theBoard = ["   "] * 10    
+theBoard = [" "] * 10    
 turn = whoGoFirst()            
+times = 0
 
-inputPlayerXO(theBoard, turn)
+inputPlayerXO(theBoard)
 window.mainloop()
