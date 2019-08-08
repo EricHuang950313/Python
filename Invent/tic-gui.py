@@ -17,14 +17,6 @@ def music():
     # repeat the music
     pygame.mixer.music.load("Up_Above.mp3")
     pygame.mixer.music.play(loops=-1)
-music()
-
-# open tkinter and set the interface
-window = tk.Tk()
-window.title("Tic-tac-toe")
-window.geometry("450x320")
-window.configure(background="light yellow")
-
             
 def makeMove(board, letter, move):
     board[move] = letter
@@ -110,6 +102,14 @@ def doubleGo(board, computerLetter):
         return 6
     elif three == [3, 7]:
         return 4
+    elif three == [2, 4]:
+        return 1
+    elif three == [2, 6]:
+        return 3
+    elif three == [4, 8]:
+        return 7
+    elif three == [6, 8]:
+        return 3
     else:
          return None
 
@@ -173,55 +173,76 @@ def whoGoFirst():
         return "player"
 
 
-# ---< GUI Start >---
+# ---< GUI Start >--- #
 
 
 def inputPlayerXO(board):
     # ask player to choose that player want to be "O" or "X"
 
-    global OX, label, entry, button
+    global label, ButtonO,ButtonX 
 
-    OX = tk.StringVar()
-    label = tk.Label(window, text="Which do you want to be, \"O\" or \"X\"?", bg="light yellow", font=("微軟正黑體", 15))
-    label.pack(pady=10)
-    entry = tk.Entry(textvariable=OX, font=("微軟正黑體", 15))
-    entry.pack(pady=10)
-    button = tk.Button(window, text="= Confirm =", command=partial(setXO_goFirst, board), font=("微軟正黑體", 15))
-    button.pack(pady=10)
+    label = tk.Label(window, text="Which do you want to be, \"O\" or \"X\"?", bg="light yellow", font=("微軟正黑體", 16))
+    label.place(x=50, y=5)
+    ButtonO = tk.Button(window, text="O", command=partial(O, board), fg="blue", font=("微軟正黑體", 30))
+    ButtonO.place(x=140, y=60, width=60, height=60)
+    ButtonX = tk.Button(window, text="X", command=partial(X, board), fg="red", font=("微軟正黑體", 30))
+    ButtonX.place(x=240, y=60, width=60, height=60)
     
-    
-def setXO_goFirst(board):
-    # set player's XO and computer's XO and choose who will go first, finally, display them
 
+def O(board):
     global playerLetter, computerLetter
+    
+    playerLetter = "O"
+    computerLetter = "X"
 
-    if(OX.get().upper() == "O" or OX.get().upper() == "X"):
-        if OX.get().upper() == "X":
-            playerLetter = "X"
-            computerLetter = "O"
-        else:
-            playerLetter = "O"
-            computerLetter = "X"
-
-
-        LabelP = tk.Label(window, text="You : "+ playerLetter, fg="Blue", bg="light yellow", font=("微軟正黑體", 36, "bold"))
-        LabelP.pack()
-        LabelC = tk.Label(window, text="Computer : "+ computerLetter,fg="Red", bg="light yellow", font=("微軟正黑體", 15))
-        LabelC.pack()
+    
+    LabelP = tk.Label(window, text="You : "+ playerLetter, fg="Blue", bg="light yellow", font=("微軟正黑體", 36, "bold"))
+    LabelP.place(x=132, y=150)
+    LabelC = tk.Label(window, text="Computer : "+ computerLetter,fg="Red", bg="light yellow", font=("微軟正黑體", 15))
+    LabelC.place(x=155, y=223)
+    if turn == "player":
         LabelF = tk.Label(window, text="Go first : "+ turn, bg="light yellow", font=("微軟正黑體", 18, "bold"))
-        LabelF.pack()
-        window.update()
-        window.after(3000)
-        label.destroy()
-        entry.destroy()
-        button.destroy()
-        LabelP.destroy()
-        LabelC.destroy()
-        LabelF.destroy()
-        displayCanvas(board)
+        LabelF.place(x=127, y=260)
     else:
-        messagebox.showinfo("Error", "Please input \"O\" or \"X\".")
+        LabelF = tk.Label(window, text="Go first : "+ turn, bg="light yellow", font=("微軟正黑體", 18, "bold"))
+        LabelF.place(x=110, y=260)
+    window.update()
+    window.after(3000)
+    label.destroy()
+    ButtonO.destroy()
+    ButtonX.destroy()
+    LabelP.destroy()
+    LabelC.destroy()
+    LabelF.destroy()
+    displayCanvas(board)
 
+
+def X(board):
+    global playerLetter, computerLetter
+    
+    playerLetter = "X"
+    computerLetter = "O"
+
+    LabelP = tk.Label(window, text="You : "+ playerLetter, fg="Blue", bg="light yellow", font=("微軟正黑體", 36, "bold"))
+    LabelP.place(x=132, y=150)
+    LabelC = tk.Label(window, text="Computer : "+ computerLetter,fg="Red", bg="light yellow", font=("微軟正黑體", 15))
+    LabelC.place(x=155, y=223)
+    if turn == "player":
+        LabelF = tk.Label(window, text="Go first : "+ turn, bg="light yellow", font=("微軟正黑體", 18, "bold"))
+        LabelF.place(x=127, y=260)
+    else:
+        LabelF = tk.Label(window, text="Go first : "+ turn, bg="light yellow", font=("微軟正黑體", 18, "bold"))
+        LabelF.place(x=110, y=260)
+    window.update()
+    window.after(3000)
+    label.destroy()
+    ButtonO.destroy()
+    ButtonX.destroy()
+    LabelP.destroy()
+    LabelC.destroy()
+    LabelF.destroy()
+    displayCanvas(board)
+    
 
 def num(i, j):
     # for return Label, which display OX
@@ -323,9 +344,24 @@ def checkPlayerMove(board):
          computerMove(board, computerLetter)     
 
 
-theBoard = [" "] * 10    
-turn = whoGoFirst()            
-times = 0
+def main():
+    # open tkinter and set the interface
 
-inputPlayerXO(theBoard)
-window.mainloop()
+    global turn, theBoard, times, window
+    window = tk.Tk()
+    window.title("Tic-tac-toe")
+    window.geometry("450x320")
+    window.configure(background="light yellow")
+
+    theBoard = [" "] * 10    
+    turn = whoGoFirst()            
+    times = 0
+    
+    inputPlayerXO(theBoard)
+
+    music()
+
+    window.mainloop()
+
+if __name__ == "__main__":
+    main()
