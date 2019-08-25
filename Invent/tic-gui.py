@@ -3,7 +3,7 @@
 # Modified by Eric Huang from "Taiwan"
 # ------ Start ------
 
-# import tkinter, messageboxx, random, pygame(music)
+# import tkinter, messagebox, random, pygame(music)
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -352,6 +352,7 @@ def main():
     window.title("Tic-tac-toe")
     window.geometry("450x320")
     window.configure(background="light yellow")
+    window.iconbitmap("icon.ico")
 
     theBoard = [" "] * 10    
     turn = whoGoFirst()            
