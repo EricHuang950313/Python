@@ -163,6 +163,19 @@ def getPlayerMove(board, playerTile):
     return[x, y] 
 
 
+def playerMayMove(board, playerTile):
+    possibleMoves = getValidMoves(board, playerTile)
+
+    bestscore = -1
+    for x, y in possibleMoves:
+        boardCopy = getBoardCopy(board)
+        makeMove(boardCopy, playerTile, x, y)
+        score = getScoreOfBoard(boardCopy)[playerTile]
+        if score > bestscore:
+            bestscore = score
+    return bestscore
+
+
 def getComputerMove(board, computerTile):
     possibleMoves = getValidMoves(board, computerTile)
     random.shuffle(possibleMoves)
@@ -170,15 +183,29 @@ def getComputerMove(board, computerTile):
         if isOnCorner(x, y):
             return[x, y]
 
+    boardCopy = getBoardCopy(board)
     bestscore = -1
+
+    PlayerOriginalScore = getScoreOfBoard(boardCopy)[playerTile]
+    ComputerOriginalScore = getScoreOfBoard(boardCopy)[computerTile]
+
     for x, y in possibleMoves:
         boardCopy = getBoardCopy(board)
         makeMove(boardCopy, computerTile, x, y)
         score = getScoreOfBoard(boardCopy)[computerTile]
+
+        if len(possibleMoves) == 1:
+            return possibleMoves[0]
+
         if score > bestscore:
-            bestMove = [x, y]
-            bestscore = score
-    print(bestMove)
+            makeMove(boardCopy, playerTile, x, y)
+            scoreP = playerMayMove(boardCopy, playerTile)
+
+            if (scoreP - PlayerOriginalScore) >= (score - ComputerOriginalScore):
+                pass
+            else:
+                bestMove = [x, y]
+                bestscore = score
     return bestMove
 
 
