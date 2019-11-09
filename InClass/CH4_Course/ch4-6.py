@@ -6,6 +6,7 @@ class People:
         self.height = h
         self.weight = w
     def __eq__(self, other):
+        # return True or False
         return self.birthyear == other.birthyear
         
 
