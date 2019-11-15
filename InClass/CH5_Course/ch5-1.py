@@ -3,7 +3,7 @@ import cv2
 
 img = np.zeros((512,768,3),np.uint8)
 # zero:全部初始化為0  e.g.print(np.zeros((3,3),np.uint8)) or print(np.ones((3,3),np.uint8))
-# Part1: row(列)*col(行)*ch(層) 資料型態:tuple
+# Part1: row(列)*col(行)*ch(層) 資料型態:tuple 直行橫列
 # Part2: DataType資料型態:unsigned(正數)int 8(每個pixel可以存0~255的值:在二進位中255是11111111)
 # 1byte = 8bit, 1個bit只能儲存0和1
 # 程式人員計算機 BIN=2進位, OCT=8進位, DEC=16進位, HEX=10進位
