@@ -1,4 +1,5 @@
 import math
+# 讀取資料時記得把1位數除1位數的那一行刪掉
 with open("math.txt", mode="r", encoding="utf-8") as file:
     l = []
     data = file.read()
