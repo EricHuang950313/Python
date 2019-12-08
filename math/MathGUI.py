@@ -12,6 +12,7 @@ def main():
     window.title("Mental-Arithmetic-Exercise-Maker")
     window.geometry("600x400+0+0")
     window.configure(bg="light yellow")
+    window.iconbitmap("icon.ico")
 
     Welcome(window)
     window.mainloop()
@@ -26,7 +27,7 @@ def Welcome(window):
     WB2.place(x=330,y=170)
 
 def Make(window):
-    global ML1, ML2, ML3, ME1, ME2, MB1
+    global ML1, ML2, ML3, ME1, ME2, MB1, MB2
     WL1.destroy()
     WB1.destroy()
     WB2.destroy()
@@ -44,29 +45,42 @@ def Make(window):
     ME2.place(x=10,y=250)
     MB1 = tk.Button(window, text="Confirm", font=("微軟正黑體",24, "bold"), bg="red", fg="yellow", command=partial(writeIn, window, amount, name))
     MB1.place(x=230, y=310)
-    
-def writeIn(window, amount, name):
-    FILE = "./" + ME2.get() + ".txt"
-    ques = int(ME1.get())
+    MB2 = tk.Button(window, text="↖", font=("微軟正黑體",20), bg="dark blue", fg="yellow", command=partial(back, window))
+    MB2.place(x=545, y=335)
 
-    yesNo = False
-
-    with open(FILE, mode="w", encoding="utf-8")as file:    
-        for i in range(ques):
-            while yesNo == False:
-                n1 = str(random.randint(10, 90))
-                n2 = str(random.randint(2, 9))
-                if ((int(n2)*10) > int(n1) > int(n2)):
-                    break
-                else:
-                    continue
-            file.write("{}÷{}=   ...    ".format(n1,n2)+"\n")
-    tk.messagebox.showinfo(title="Maker", message="Write it Successfully.")
+def back(window):
     window.destroy()
     main()
 
+def writeIn(window, amount, name):
+    if ME2.get()=="":
+        tk.messagebox.showinfo(title="Maker", message="You didn't input the file name!")
+    else:
+        FILE = "./" + ME2.get() + ".txt"
+    try:
+        ques = int(ME1.get())
+
+        yesNo = False
+        with open(FILE, mode="w", encoding="utf-8")as file:    
+            for i in range(ques):
+                while yesNo == False:
+                    n1 = str(random.randint(10, 90))
+                    n2 = str(random.randint(2, 9))
+                    if ((int(n2)*10) > int(n1) > int(n2)):
+                        break
+                    else:
+                        continue
+                file.write("{}÷{}=   ...    ".format(n1,n2)+"\n")
+        tk.messagebox.showinfo(title="Maker", message="Write it Successfully.")
+        window.destroy()
+        main()
+    except BaseException:
+        tk.messagebox.showinfo(title="Maker", message="You didn't input the amount!")
+
+    
+
 def Check(window):
-    global CL1, CL2, CL3, CE1, CB1
+    global CL1, CL2, CL3, CE1, CB1, CB2
     WL1.destroy()
     WB1.destroy()
     WB2.destroy()
@@ -79,32 +93,39 @@ def Check(window):
     CE1.place(x=10,y=130)
     CB1 = tk.Button(window, text="Confirm", font=("微軟正黑體",24, "bold"), bg="red", fg="yellow", command=partial(checkAndSave, window, writeFileName))
     CB1.place(x=230, y=190)
+    CB2 = tk.Button(window, text="↖", font=("微軟正黑體",20), bg="dark blue", fg="yellow", command=partial(back, window))
+    CB2.place(x=545, y=335)
 
 def checkAndSave(window, writeFileName):
-    F1 = "./" + writeFileName.get() + ".txt"
-    F2 = "./" + writeFileName.get() + "ANS.txt"
+    if writeFileName.get()=="":
+        tk.messagebox.showinfo(title="Maker", message="You didn't input the file name!")
+        return True
+    else:
+        F1 = "./" + writeFileName.get() + ".txt"
+        F2 = "./" + writeFileName.get() + "ANS.txt"
+    try:
+        with open(F1, mode="r", encoding="utf-8") as file:
+            l = []
+            data = file.read()
+            file.seek(0)
+            for line in file:
+                a = int(line[0]+line[1])
+                b = int(line[3])
 
-    with open(F1, mode="r", encoding="utf-8") as file:
-        l = []
-        data = file.read()
-        file.seek(0)
-        for line in file:
-            a = int(line[0]+line[1])
-            b = int(line[3])
+                for i in range(b+1):
+                    if ((a-i) % b) == 0:
+                        l += [str(math.floor((a-i)/b))+" , "+str(abs(-i))]
+                        break
+                    else:
+                        continue
 
-            for i in range(b+1):
-                if ((a-i) % b) == 0:
-                    l += [str(math.floor((a-i)/b))+" , "+str(abs(-i))]
-                    break
-                else:
-                    continue
-
-    with open(F2, mode="w", encoding="utf-8") as file:
-        for i in l:
-            file.write(i+"\n")
-    tk.messagebox.showinfo(title="Checker", message="Check it Successfully.\nThe answer's file name is "+F2)
-    window.destroy()
-    main()
-    
+        with open(F2, mode="w", encoding="utf-8") as file:
+            for i in l:
+                file.write(i+"\n")
+        tk.messagebox.showinfo(title="Checker", message="Check it Successfully.\nThe answer's file name is "+F2)
+        window.destroy()
+        main()
+    except BaseException:
+        tk.messagebox.showinfo(title="Maker", message="You inputed the wrong file name!")
 if __name__ == "__main__":
     main()
