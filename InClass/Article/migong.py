@@ -107,6 +107,7 @@ def Run():
                     print("o",end='')
                 else:
                     print(" ",end='')
+            print(mazeA)
             print()
 
         for x in range(row):
@@ -117,7 +118,11 @@ def Run():
                     mazeB[x*pixelZoomin:(x+1)*pixelZoomin,y*pixelZoomin:(y+1)*pixelZoomin] = 255
                 
         cv2.imshow("Migong",mazeB)
-        cv2.waitKey(200)
+        cv2.waitKey(500)
+
+        if i==i_end and j==j_end:
+            cv2.waitKey(1000)
+            sys.exit()
 
         if mazeA[i-1][j] == 0:
             reach(i-1, j)
@@ -129,9 +134,7 @@ def Run():
             reach(i+1, j)
         mazeA[i][j] = 0
 
-        if i==i_end and j==j_end:
-            cv2.waitKey(1000)
-            sys.exit()
+        
     print_maze()
     cv2.destroyAllWindows()
 
