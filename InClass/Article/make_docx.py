@@ -23,10 +23,10 @@ def main():
 
 def Welcome(window):
     global  WL1, WB1
-    WL1 = tk.Label(window, text="Welcome To \n\"Mental-Arithmetic-Exercise-Maker\".", font=("微軟正黑體",24, "bold"), bg="light yellow")
-    WL1.place(x=10,y=25)
+    WL1 = tk.Label(window, text="歡迎來到 \n\"心算單產生器\".", font=("微軟正黑體",40, "bold"), bg="light yellow")
+    WL1.place(x=105,y=25)
     WB1 = tk.Button(window, text="製作", font=("微軟正黑體",48), fg="blue", command=partial(Make, window))
-    WB1.place(x=205,y=170)
+    WB1.place(x=200,y=190)
     
 
 def Make(window):
@@ -63,7 +63,7 @@ def writeIn(window, amount, name):
         tk.messagebox.showinfo(title="Maker", message="請輸入檔案名稱 !")
     else:
         word = win32com.client.Dispatch("Word.Application")
-        word.Visible = 0
+        word.Visible = 1
         word.DisplayAlerts = 0
         doc = word.Documents.Add()
 
@@ -99,23 +99,21 @@ def writeIn(window, amount, name):
 
         for i in range(1, column+1):
             for j in range(1, 4):
-                try:
-                    table.Cell(i, j).Range.Text = l[count]
-                except BaseException:
+                table.Cell(i, j).Range.Text = l[count]
+                count += 1 
+                if count == len(l):
                     doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
                     doc.Close()
                     word.Quit()
                     window.destroy()
                     main()
-                count += 1 
 
-        doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+"docx")
+        doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
         doc.Close()
         word.Quit()
         window.destroy()
         main() 
 
-    
 
 if __name__ == "__main__":
     main()
