@@ -97,23 +97,61 @@ def writeIn(window, amount, name):
         for i in range(1, math.floor(user_input/50)+1):
             l.insert(50*i+i-1, "  /  W:")
 
+        with open ("./make_docx.txt", "w", encoding="utf-8") as file:
+            for i in l:
+                file.write(i+"\n")
+
+        with open ("./make_docx.txt", "r", encoding="utf-8") as file:
+            l2 = []
+            file.seek(0)
+            for line in file:
+                if line[0] == " ":
+                    l2 +=[" "]
+                    continue
+                else:
+                    a = int(line[0]+line[1])
+                    b = int(line[3])
+
+                    for i in range(b+1):
+                        if ((a-i) % b) == 0:
+                            l2 += [str(math.floor((a-i)/b))+" , "+str(abs(-i))]
+                            break
+                        else:
+                            continue
+
+        with open ("./ans.txt", "w", encoding="utf-8") as file:
+            for i in l2:
+                file.write(i+"\n")
+
+
         for i in range(1, column+1):
             for j in range(1, 4):
                 table.Cell(i, j).Range.Text = l[count]
                 count += 1 
                 if count == len(l):
-                    doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
+                    doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+"ans.docx")
                     doc.Close()
+                    break
+            if count == len(l):
+                break
+
+        doc2 = word.Documents.Add()
+        rangee2 = doc2.Range(0,0)
+        rangee2.Style.Font.Name = "微軟正黑體"
+        rangee2.Style.Font.Size = 18
+        rangee2.Style.Font.Outline = 0
+        table2 = doc2.Tables.Add(rangee2, column, 3)
+        count = 0
+        for i in range(1, column+1):
+            for j in range(1, 4):
+                table2.Cell(i, j).Range.Text = l2[count]
+                count += 1 
+                if count == len(l2):
+                    doc2.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
+                    doc2.Close()
                     word.Quit()
                     window.destroy()
                     main()
-
-        doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
-        doc.Close()
-        word.Quit()
-        window.destroy()
-        main() 
-
 
 if __name__ == "__main__":
     main()
