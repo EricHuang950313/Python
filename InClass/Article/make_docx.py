@@ -22,14 +22,11 @@ def main():
     window.mainloop()
 
 def Welcome(window):
-    global  WL1, WL2, WL3, WL4, WL5, WL6, WL7, WB1, TL1, TimerOpen
-    TimerOpen = True
-    def timer(window):
-        global TimerOpen
-        while TimerOpen == True:
-            t = time.strftime('%H:%M:%S')
-            STL1.set(t)
-            window.update()
+    global  WL1, WL2, WL3, WL4, WL5, WL6, WL7, WB1, TL1
+    def update():
+        now = time.strftime("%H:%M:%S")
+        TL1.configure(text=now)
+        window.after(1000, update)
     WL1 = tk.Label(window, text="Atom", font=("微軟正黑體",50, "bold"), fg="yellow", relief="solid", bg="black")
     WL1.place(x=35,y=20)
     WL2 = tk.Label(window, text="-", font=("微軟正黑體",50, "bold"), fg="yellow", relief="solid", bg="black")
@@ -46,15 +43,12 @@ def Welcome(window):
     WL7.place(x=25,y=320)
     WB1 = tk.Button(window, text="製作", font=("微軟正黑體",48), fg="blue", relief="solid", command=partial(Make, window))
     WB1.place(x=45,y=165)
-    t = time.strftime('%H:%M:%S')
-    STL1 = tk.StringVar()
-    TL1 = tk.Label(window, textvariable=STL1, font=("微軟正黑體",36, "bold"), fg="white",bg="black")
+    TL1 = tk.Label(window, font=("微軟正黑體",36, "bold"), fg="white",bg="black")
     TL1.place(x=330,y=140)
-    timer(window)
+    update()
 
 def Make(window):
     global ML1, ML2, ML3, ME1, ME2, MB1, MB2
-    TimerOpen = False
     WL1.destroy()
     WL2.destroy()
     WL3.destroy()
