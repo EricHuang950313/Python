@@ -8,6 +8,7 @@ import win32com
 from win32com.client import Dispatch, constants
 import os
 import sys
+import time
 
 
 def main():
@@ -15,38 +16,69 @@ def main():
     window = tk.Tk()
     window.title("Mental-Arithmetic-Exercise-Maker")
     window.geometry("600x400+0+0")
-    window.configure(bg="light yellow")
+    window.configure(bg="black")
     window.iconbitmap("icon.ico")
-
     Welcome(window)
     window.mainloop()
 
 def Welcome(window):
-    global  WL1, WB1
-    WL1 = tk.Label(window, text="歡迎來到 \n\"心算單產生器\".", font=("微軟正黑體",40, "bold"), bg="light yellow")
-    WL1.place(x=105,y=25)
-    WB1 = tk.Button(window, text="製作", font=("微軟正黑體",48), fg="blue", command=partial(Make, window))
-    WB1.place(x=200,y=190)
-    
+    global  WL1, WL2, WL3, WL4, WL5, WL6, WL7, WB1, TL1, TimerOpen
+    TimerOpen = True
+    def timer(window):
+        global TimerOpen
+        while TimerOpen == True:
+            t = time.strftime('%H:%M:%S')
+            STL1.set(t)
+            window.update()
+    WL1 = tk.Label(window, text="Atom", font=("微軟正黑體",50, "bold"), fg="yellow", relief="solid", bg="black")
+    WL1.place(x=35,y=20)
+    WL2 = tk.Label(window, text="-", font=("微軟正黑體",50, "bold"), fg="yellow", relief="solid", bg="black")
+    WL2.place(x=225,y=20)
+    WL3 = tk.Label(window, text="-", font=("微軟正黑體",50, "bold"), fg="light green", relief="solid", bg="black")
+    WL3.place(x=250,y=20)
+    WL4 = tk.Label(window, text="Platform", font=("微軟正黑體",50, "bold"), fg="light green", relief="solid", bg="black")
+    WL4.place(x=285,y=20)
+    WL5 = tk.Label(window, text="1.01 to the power of 365 ≒ 37.78    &    0.99 to the power of 365 ≒ 0.03", font=("Ariel",14), fg="white", relief="solid", bg="black")
+    WL5.place(x=30,y=110)
+    WL6 = tk.Label(window, text="||\n||\n||\n||\n||\n||\n||", font=("微軟正黑體",20), fg="white", bg="black")
+    WL6.place(x=270,y=140)
+    WL7 = tk.Label(window, text="產生數學心算練習單", font=("微軟正黑體",18), fg="white", bg="black")
+    WL7.place(x=25,y=320)
+    WB1 = tk.Button(window, text="製作", font=("微軟正黑體",48), fg="blue", relief="solid", command=partial(Make, window))
+    WB1.place(x=45,y=165)
+    t = time.strftime('%H:%M:%S')
+    STL1 = tk.StringVar()
+    TL1 = tk.Label(window, textvariable=STL1, font=("微軟正黑體",36, "bold"), fg="white",bg="black")
+    TL1.place(x=330,y=140)
+    timer(window)
 
 def Make(window):
     global ML1, ML2, ML3, ME1, ME2, MB1, MB2
+    TimerOpen = False
     WL1.destroy()
+    WL2.destroy()
+    WL3.destroy()
+    WL4.destroy()
+    WL5.destroy()
+    WL6.destroy()
+    WL7.destroy()
     WB1.destroy()
+    TL1.destroy()
+    window.configure(bg="light yellow")
     amount = tk.StringVar()
     name = tk.StringVar()
-    ML1 = tk.Label(window, text="產生器", font=("微軟正黑體",28, "bold"), bg="light yellow")
-    ML1.place(x=240,y=15)
-    ML2 = tk.Label(window, text="我想做幾題 ?", font=("微軟正黑體",24), bg="light yellow")
-    ML2.place(x=45,y=75)
+    ML1 = tk.Label(window, text="產生器 MAKER", font=("微軟正黑體",36, "bold"), bg="light yellow")
+    ML1.place(x=125,y=20)
+    ML2 = tk.Label(window, text="- 我想做幾題 ?", font=("微軟正黑體",24), bg="light yellow")
+    ML2.place(x=20,y=95)
     ME1 = tk.Entry(window, font=("微軟正黑體",20), width=36,textvariable=amount)
-    ME1.place(x=10,y=130)
-    ML3 = tk.Label(window, text="我的檔案名稱 ?", font=("微軟正黑體",24), bg="light yellow")
-    ML3.place(x=45,y=190)
+    ME1.place(x=10,y=145)
+    ML3 = tk.Label(window, text="- 我的檔案名稱 ?", font=("微軟正黑體",24), bg="light yellow")
+    ML3.place(x=20,y=205)
     ME2 = tk.Entry(window, font=("微軟正黑體",20), width=36,textvariable=name)
     ME2.place(x=10,y=250)
     MB1 = tk.Button(window, text="確定", font=("微軟正黑體",24, "bold"), bg="red", fg="yellow", command=partial(writeIn, window, amount, name))
-    MB1.place(x=250, y=310)
+    MB1.place(x=250, y=305)
     MB2 = tk.Button(window, text="↖", font=("微軟正黑體",20), bg="dark blue", fg="yellow", command=partial(back, window))
     MB2.place(x=545, y=335)
 
@@ -129,7 +161,7 @@ def writeIn(window, amount, name):
                 table.Cell(i, j).Range.Text = l[count]
                 count += 1 
                 if count == len(l):
-                    doc.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+"ans.docx")
+                    doc.SaveAs(os.path.dirname(os.path.abspath("make_docx.py"))+"\\"+name.get()+".docx")
                     doc.Close()
                     break
             if count == len(l):
@@ -147,7 +179,7 @@ def writeIn(window, amount, name):
                 table2.Cell(i, j).Range.Text = l2[count]
                 count += 1 
                 if count == len(l2):
-                    doc2.SaveAs(os.path.dirname(os.path.abspath("1.py"))+"\\"+name.get()+".docx")
+                    doc2.SaveAs(os.path.dirname(os.path.abspath("make_docx.py"))+"\\"+name.get()+"ans.docx")
                     doc2.Close()
                     word.Quit()
                     window.destroy()
