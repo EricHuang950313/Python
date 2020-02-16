@@ -10,7 +10,7 @@ def main():
     window.mainloop()
 
 def menu(window):
-    global name, MEL, MEE, MEB, b
+    global name, MEL, MEE, MEB, tss, l2, l, times
     MEL = tk.Label(window, text="新增檔案", font=("微軟正黑體",20), )
     MEL.place(x=5, y=20)
     name = tk.StringVar()
@@ -18,10 +18,22 @@ def menu(window):
     MEE.place(x=125, y=20)
     MEB = tk.Button(window, text="確定", font=("微軟正黑體",20), relief="solid", command=partial(make, window))
     MEB.place(x=510, y=10)
-    if l != "":
-        for i in range(len(l2)):
-            b = tk.Button(window, text=l2[i], font=("微軟正黑體",20), relief="flat", command=partial(show, window, i))
-            b.place(x=5, y=60+(i*60))
+    if tss == 0 or l == "":
+        with open("./OpenFile.txt", "r", encoding="utf-8") as file:
+            a = list([file.read()])
+            if a == ['']:
+                a.clear()
+            else:
+                l2 = a[0][2:-2].split("\', \'")
+            for i in range(len(l2)):
+                MAB = tk.Button(window, text=l2[i], font=("微軟正黑體",20), relief="flat", command=partial(show, window, times))
+                MAB.place(x=5, y=60+(i*60))
+                l += [MAB]
+                times += 1
+    else:
+        for i in range(len(l)):
+            l[i].place(x=5, y=60+(i*60))
+    tss += 1
 
 def make(window):
     global times, l, l2, MAB
@@ -43,16 +55,19 @@ def make(window):
         MAB.place(x=5, y=60+(times*60))
         with open("./"+name.get()+".txt", "a", encoding="utf-8"):
             pass
+        with open("./OpenFile.txt", "w", encoding="utf-8") as file:
+            file.truncate()
         l += [MAB]
         l2 += [name.get()]
+        with open("./OpenFile.txt", "a", encoding="utf-8") as file:
+            file.write(str(l2))
         name.set("")
         times += 1
 
 def show(window, times):
-    global first, SL, ST, SE, SB, SB2, ts
-    if ts >= 1:
-        b.place_forget()
-    MAB.place_forget()
+    global SL, ST, SE, SB, SB2, ts
+    for i in range(len(l)):
+        l[i].place_forget()
     MEL.place_forget()
     MEE.place_forget()
     MEB.place_forget()
@@ -135,5 +150,6 @@ times = 0
 l = []
 l2 = []
 ts = 0
+tss = 0
 
 main()
