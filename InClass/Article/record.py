@@ -10,7 +10,7 @@ def main():
     window.mainloop()
 
 def menu(window):
-    global name, MEL, MEE, MEB
+    global name, MEL, MEE, MEB, b
     MEL = tk.Label(window, text="新增檔案", font=("微軟正黑體",20), )
     MEL.place(x=5, y=20)
     name = tk.StringVar()
@@ -24,7 +24,7 @@ def menu(window):
             b.place(x=5, y=60+(i*60))
 
 def make(window):
-    global times, l, l2
+    global times, l, l2, MAB
     nameExist = False
     for i in l2:
         if name.get() == i:
@@ -49,13 +49,13 @@ def make(window):
         times += 1
 
 def show(window, times):
-    global first
-    for i in range(len(l)):
-        MAB = l[i]
-        MAB.destroy()
-    MEL.destroy()
-    MEE.destroy()
-    MEB.destroy()
+    global first, SL, ST, SE, SB, SB2, ts
+    if ts >= 1:
+        b.place_forget()
+    MAB.place_forget()
+    MEL.place_forget()
+    MEE.place_forget()
+    MEB.place_forget()
     things = tk.StringVar()
     SL = tk.Label(window, text="輸入列：", font=("微軟正黑體",10))
     SL.place(x=5, y=10)
@@ -67,16 +67,10 @@ def show(window, times):
     SB.place(x=505, y=10)
     SB2 = tk.Button(window, text="返回", font=("微軟正黑體",14), relief="solid", command=partial(back, window))
     SB2.place(x=540, y=355)
-    if first == True:
-        with open("./"+str(l2[times])+".txt", "r", encoding="utf-8") as file:
-            ST.delete(1.0,tk.END)
-            for i in file:
-                ST.insert("end", i)
-            first = False
-
-def back(window):
-    window.destroy()
-    main()
+    with open("./"+str(l2[times])+".txt", "r", encoding="utf-8") as file:
+        ST.delete(1.0,tk.END)
+        for i in file:
+            ST.insert("end", i)
 
 def save(things, times, ST):
     with open("./"+str(l2[times])+".txt", "r", encoding="utf-8") as file:
@@ -86,6 +80,8 @@ def save(things, times, ST):
     writeIn = True
     checkNext = True
     popl3 = False
+    if things.get() == "":
+        tk.messagebox.showinfo(title="InputError", message="警告:輸入空白!")
     try:
         if things.get()[0]+things.get()[1]+things.get()[2]+things.get()[3] == "del,":
             try:
@@ -125,9 +121,19 @@ def save(things, times, ST):
                     ST.insert("end", i)
         things.set("")
 
+def back(window):
+    global ts
+    ts += 1
+    SL.place_forget()
+    ST.place_forget()
+    SE.place_forget()
+    SB.place_forget()
+    SB2.place_forget()
+    menu(window)
+
 times = 0
 l = []
 l2 = []
-first = True
+ts = 0
 
 main()
