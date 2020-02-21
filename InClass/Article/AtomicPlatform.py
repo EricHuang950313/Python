@@ -1,4 +1,4 @@
-# Mental-Arithmetic-Exercise-Maker created by EricHuang
+# AtomicPlatform created by EricHuang (file:OpenFile.txt&Product information.txt)
 import tkinter as tk
 from functools import partial
 from tkinter import messagebox
@@ -17,12 +17,12 @@ def main():
     window.title("Atomic-Platform")
     window.geometry("600x400+0+0")
     window.configure(bg="black")
-    window.iconbitmap("icon.ico")
     Welcome(window)
     window.mainloop()
 
 def Welcome(window):
-    global  WL1, WL2, WL3, WL4, WL5, WL6, WL7, WB1, TL1
+    window.configure(bg="black")
+    global  WL1, WL2, WL3, WL4, WL5, WL6, WL7, WB1, TL1, WB2, WB3, WL8, WL9
     def update():
         now = time.strftime("%H:%M:%S")
         TL1.configure(text=now)
@@ -47,21 +47,58 @@ def Welcome(window):
     TL1.place(x=330,y=140)
     WB2 = tk.Button(window, text="筆記", font=("微軟正黑體",24), relief="solid",command=note)
     WB2.place(x=315,y=215)
-    WL8 = tk.Label(window, text="做點筆記也不錯", font=("微軟正黑體",18), fg="white", bg="black")
+    WL8 = tk.Label(window, text="寫寫東西~~~\n~~~記錄生活", font=("微軟正黑體",18), fg="white", bg="black")
     WL8.place(x=415,y=215)
+    WB3 = tk.Button(window, text="資訊", font=("微軟正黑體",24), relief="solid",command=partial(info, window))
+    WB3.place(x=315,y=300)
+    WL9 = tk.Label(window, text="多多支持~~~\n~~~相關產品", font=("微軟正黑體",18), fg="white", bg="black")
+    WL9.place(x=415,y=300)
     update()
+
+def info(window):
+    global IL, IB
+    window.configure(bg="white")
+    WL1.place_forget()
+    WL2.place_forget()
+    WL3.place_forget()
+    WL4.place_forget()
+    WL5.place_forget()
+    WL6.place_forget()
+    WL7.place_forget()
+    WB1.place_forget()
+    TL1.place_forget()
+    WB2.place_forget()
+    WB3.place_forget()
+    WL8.place_forget()
+    WL9.place_forget()
+    ILS = tk.StringVar()
+    IL = tk.Label(window, textvariable=ILS)
+    IL.place(x=75, y=50)
+    IB = tk.Button(window, text="↖", font=("微軟正黑體",20), bg="dark blue", fg="yellow", command=partial(infoB, window))
+    IB.place(x=545, y=335)
+    with open("./Product Infomation.txt", "r", encoding="utf-8") as file:
+        ILS.set(file.read())
+
+def infoB(window):
+    IL.place_forget()
+    IB.place_forget()
+    Welcome(window)
 
 def Make(window):
     global ML1, ML2, ML3, ME1, ME2, MB1, MB2
-    WL1.destroy()
-    WL2.destroy()
-    WL3.destroy()
-    WL4.destroy()
-    WL5.destroy()
-    WL6.destroy()
-    WL7.destroy()
-    WB1.destroy()
-    TL1.destroy()
+    WL1.place_forget()
+    WL2.place_forget()
+    WL3.place_forget()
+    WL4.place_forget()
+    WL5.place_forget()
+    WL6.place_forget()
+    WL7.place_forget()
+    WB1.place_forget()
+    TL1.place_forget()
+    WB2.place_forget()
+    WB3.place_forget()
+    WL8.place_forget()
+    WL9.place_forget()
     window.configure(bg="light yellow")
     amount = tk.StringVar()
     name = tk.StringVar()
