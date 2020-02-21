@@ -1,0 +1,18 @@
+產品名稱 : Atomic Platform  Ver.3.0
+產品內容 : 1.數學心算單產生器
+                  2.時間
+                  3.記事本
+                  4.產品資訊
+釋出時間 : 2020.02.18
+程式設計 : EricHuang
+美術設計 : EricHuang
+程式來源 : Python 3.7 + Module Tkinter 自行編寫 (1)
+時間來源 : Python Module "Time" -- UTC世界協調時間UTC+8 (2)
+記事本讀取 : Windows記事本 (3)
+字體 : 微軟正黑體、Ariel
+程式參考 : Github/EricHuang950313/Python/InClass/Article/AtomicPlatform.py
+使用須知 : 1.使用Win10(Win7或許可以)
+                  2.請勿刪除主程式的資料夾(可建立刪除捷徑)
+                  3.使用前確認Word是否可以存檔
+
+Copyright © 2020 EricHuang.  All rights reserved
