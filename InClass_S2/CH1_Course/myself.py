@@ -3,6 +3,8 @@ class myBomb:
         self.map_size = (10, 10) # 地圖大小
         self.bombs_position = [(2, 2), (5, 5), (8, 8)] # 炸彈位置
         self.remain_position = [] # 剩餘位置
+        self.non_choice_position = [] # 無法選擇的位置
+        self.final_Map = [[],[],[],[],[],[],[],[],[],[]]
         
         for i in range(1, 11):
             for j in range(1, 11):
@@ -54,20 +56,37 @@ class myBomb:
             if flag == False:
                 if step in self.remain_position:
                     self.remain_position.remove(step)
+                    self.non_choice_position += [step]
             else: # flag == True
                 landmine_bomb_neighbor = self.find(landmine)
                 for temp in landmine_bomb_neighbor:
                     if temp in self.remain_position:
                         self.remain_position.remove(temp)
+                        self.non_choice_position += [temp]
                 for i in range(len(step_neighbors)):
                     for j in range(len(self.bombs_position)):
                         if step_neighbors[i] == self.bombs_position[j]:
                             self.bombs_position.remove(step_neighbors[i])
+                            self.non_choice_position += [step_neighbors[i]]
                             break
 
         print("Remaining pos:", self.remain_position)
         print("Remaining bombs:", len(self.bombs_position))
+        self.show()
         return True
+
+    def show(self):
+        for i in range(1, 11):
+            for j in range(1, 11):
+                if tuple((i, j)) in self.bombs_position:
+                    self.final_Map[i-1] += ["●"]
+                elif tuple((i, j)) in self.non_choice_position:
+                    self.final_Map[i-1] += ["X"]
+                else:
+                    self.final_Map[i-1] += ["O"]
+        for i in range(10):
+            print(self.final_Map[i])
+
             
 
 user = myBomb()
