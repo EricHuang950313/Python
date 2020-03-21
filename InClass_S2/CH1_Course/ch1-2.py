@@ -42,16 +42,25 @@ class MyBomb:
                     self.remain_position.remove(step)
             if flag == True: # xx 就是地雷
                 xx_bomb_neighbor = self.find_neighbor(xx)
+                self.bomb_position.remove(xx)
                 for temp in xx_bomb_neighbor:
                     if temp in self.remain_position:
                         self.remain_position.remove(temp)
         print('Remaining pos:',self.remain_position)
         print('Remaining bombs:',len(self.bomb_position))
-    #def show_map(self):
-        #self.remain_position 用 O/X顯示
-
-
-
+        
+    def show_map(self):
+        for i in range(1, self.map_size[0]+1):
+            tempstr = ""
+            for j in range(1, self.map_size[1]+1):
+                if (i, j) in self.remain_position:
+                    tempstr += " O"
+                else:
+                    tempstr += " X"
+            print(tempstr)
 
 Test = MyBomb()
-Test.mymain((1,1))
+Test.show_map()
+print("=============")
+Test.mymain((3,3))
+Test.show_map()
