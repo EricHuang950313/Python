@@ -58,6 +58,7 @@ class myBomb:
                     self.non_choice_position += [step]
             else: # flag == True
                 landmine_bomb_neighbor = self.find(landmine)
+                self.bombs_position.remove(landmine)
                 for temp in landmine_bomb_neighbor:
                     if temp in self.remain_position:
                         self.remain_position.remove(temp)
@@ -81,6 +82,6 @@ class myBomb:
             
 
 user = myBomb()
-user_input = str(input()).split(",")
+user_input = str(input("input as \"x,y\". e.g:1,1/5,5/3,4 etc.:")).split(",")
 user_input = (int(user_input[0]), int(user_input[1]))
 user.myMain(user_input)
