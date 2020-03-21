@@ -22,7 +22,6 @@ class myBomb:
             for y in range(step[0]-1, step[0]+2):
                 if not(x < 1 or x > 10 or y < 1 or y > 10):
                     self.user += [(x, y)]
-        self.user.remove(step)
         return self.user
 
         # 2 =>
@@ -63,13 +62,7 @@ class myBomb:
                     if temp in self.remain_position:
                         self.remain_position.remove(temp)
                         self.non_choice_position += [temp]
-                for i in range(len(step_neighbors)):
-                    for j in range(len(self.bombs_position)):
-                        if step_neighbors[i] == self.bombs_position[j]:
-                            self.bombs_position.remove(step_neighbors[i])
-                            self.non_choice_position += [step_neighbors[i]]
-                            break
-
+              
         #print("Remaining pos:", self.remain_position)
         print("Remaining bombs:", len(self.bombs_position))
         self.show()
