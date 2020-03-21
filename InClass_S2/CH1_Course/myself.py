@@ -70,7 +70,7 @@ class myBomb:
                             self.non_choice_position += [step_neighbors[i]]
                             break
 
-        print("Remaining pos:", self.remain_position)
+        #print("Remaining pos:", self.remain_position)
         print("Remaining bombs:", len(self.bombs_position))
         self.show()
         return True
@@ -78,9 +78,7 @@ class myBomb:
     def show(self):
         for i in range(1, 11):
             for j in range(1, 11):
-                if tuple((i, j)) in self.bombs_position:
-                    self.final_Map[i-1] += ["●"]
-                elif tuple((i, j)) in self.non_choice_position:
+                if tuple((i, j)) in self.non_choice_position:
                     self.final_Map[i-1] += ["X"]
                 else:
                     self.final_Map[i-1] += ["O"]
