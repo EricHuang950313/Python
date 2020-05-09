@@ -24,11 +24,12 @@ def findPos():
                 pass
 
 def illegal_pos(pos):
-    if pos[0] < 0 or pos[1] < 0 or pos[0] > 4 or pos[1] > 4:
+    if pos[0]<0 or pos[1]<0 or pos[0]>4 or pos[1]>4 or mymap[pos[0]][pos[1]] in ['●','▲']:
         illegal_flag = 0
     else:
         illegal_flag = 1
     return illegal_flag
+
 
 def check_path(direction, mymap, currentPos):
     currentPos_old = currentPos.copy()
@@ -41,7 +42,7 @@ def check_path(direction, mymap, currentPos):
         currentPos_new[0] -= 1
     if direction in ["S", "s"]:
         currentPos_new[0] += 1
-
+    print('currentPos_new:',currentPos_new)
     if currentPos_new[0] < 0 or currentPos_new[1] < 0 or currentPos_new[0] > 4 or currentPos_new[1] > 4:
         flag = 0
     elif mymap[currentPos_new[0]][currentPos_new[1]] in ["▲", "●"]:
@@ -56,10 +57,24 @@ def endIfWin(pos):
 def find_select_N(currentPos):
     a = illegal_pos([currentPos[0], currentPos[1] - 1])
     b = illegal_pos([currentPos[0], currentPos[1] + 1])
-    c = illegal_pos([currentPos[0] + 1, currentPos[1]])
-    d = illegal_pos([currentPos[0] - 1, currentPos[1]])
-    print(a, b, c, d)
+    c = illegal_pos([currentPos[0] - 1, currentPos[1]])
+    d = illegal_pos([currentPos[0] + 1, currentPos[1]])
     return a+b+c+d
+
+def find_largel(select_N_record):
+    for i in range(len(select_N_record)-1, 0, -1):
+        if select_N_record[i] > 1:
+            return i
+
+def back_map(select_N_record, pos_record, mymap):
+    index = find_largel(select_N_record)
+    for i in range(len(select_N_record)-1, index, -1):
+        select_N_record = select_N_record[:-1]
+        pos2 = pos_record[-1]
+        mymap[pos2[0]][pos2[1]] = " "
+        pos_record = pos_record[:-1]
+    pos = pos_record[-1]
+    return pos, mymap, select_N_record, pos_record
 
 def gaming(mymap):
     show_map()
@@ -71,7 +86,6 @@ def gaming(mymap):
         inLetter = check_input(userinput)
         if inLetter == False:
             print("Input Letter Interrupt.")
-            print(letter)
         else:
             flag, currentPos_old, currentPos_new = check_path(userinput, mymap, currentPos)
             if flag == 0:
@@ -85,9 +99,13 @@ def gaming(mymap):
                 show_map()
                 select_N = find_select_N(currentPos)
                 select_N_record += [select_N]
+                print('select_N_record : ', select_N_record)
+                print('pos_record : ', pos_record)
                 if select_N == 0:
                     print("You have no place to go.")
                     a = input("Click anything to contiune")
+                    currentPos, mymap, select_N_record, pos_record = back_map(select_N_record, pos_record, mymap)
+                    show_map()
             if endIfWin(currentPos) == True:
                 print("Great Job!")
                 break
