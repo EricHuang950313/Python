@@ -1,5 +1,6 @@
 def Fabi(n):
-    if n == 0 or n == 1:
+    if n < 2:
         return 1
     else:
-        return
+        return Fabi(n-1) + Fabi(n-2)
+print(Fabi(3))
