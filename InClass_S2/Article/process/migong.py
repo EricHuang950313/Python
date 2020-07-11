@@ -3,7 +3,6 @@ import tkinter as tk
 from functools import partial
 from PIL import Image, ImageTk
 import sys
-import time
 
 currentPos = [1,1]
 l = [[2,2,2,2,2,2,2,2,2,2],
@@ -35,7 +34,8 @@ def make_a_Maze():
     l = tk.Label(window, image=imgtk)
     l.place(x=20, y=20)
     if endIfWin(currentPos) == True:
-        print("Great")
+        sys.exit()
+
     b1 = tk.Button(window, text="↑", font=("微軟正黑體",28), command=partial(main,1))
     b1.place(x=880,y=450)
     b2 = tk.Button(window, text="←", font=("微軟正黑體", 28), command=partial(main,3))
