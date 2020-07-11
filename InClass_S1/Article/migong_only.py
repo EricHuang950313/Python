@@ -2,7 +2,6 @@ import cv2
 import numpy as np 
 import sys
 
-
 i_start, j_start = 1, 1
 i_end, j_end = 8, 8
 
