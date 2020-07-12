@@ -3,6 +3,7 @@ import tkinter as tk
 from functools import partial
 from PIL import Image, ImageTk
 import sys
+import time
 
 currentPos = [1,1]
 l = [[2,2,2,2,2,2,2,2,2,2],
@@ -24,16 +25,18 @@ def make_a_Maze():
     mazeB = np.zeros((row*pixelZoomin,col*pixelZoomin),np.uint8)
     for i in range(row):
         for j in range(col):
-            if mazeA[i, j] == 1:
-                mazeB[i * pixelZoomin:(i + 1) * pixelZoomin, j * pixelZoomin:(j + 1) * pixelZoomin] = 127
-            elif mazeA[i,j] == 0:
+            if mazeA[i,j] == 0 or mazeA[i,j] == 1:
                 mazeB[i*pixelZoomin:(i+1)*pixelZoomin,j*pixelZoomin:(j+1)*pixelZoomin] = 255
+            if mazeA[i, j] == 1:
+                mazeB[i * pixelZoomin+10:(i + 1) * pixelZoomin-10, j * pixelZoomin+10:(j + 1) * pixelZoomin-10] = 127
 
     img = Image.fromarray(mazeB.astype(np.uint8))
     imgtk = ImageTk.PhotoImage(img)
     l = tk.Label(window, image=imgtk)
     l.place(x=20, y=20)
+    window.update()
     if endIfWin(currentPos) == True:
+        time.sleep(1)
         sys.exit()
 
     b1 = tk.Button(window, text="↑", font=("微軟正黑體",28), command=partial(main,1))
