@@ -8,11 +8,11 @@ with open("setting.json", "r", encoding="utf8") as j_file:
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=">>", help_command=None, intents=intents)
-client = discord.Client()
 
-@bot.event
+@bot.event 
 async def on_ready():
     print(">>System:Bot is online.")
+       
 
 @bot.event
 async def on_member_join(member):
@@ -26,7 +26,8 @@ async def on_member_join(member):
 async def on_member_remove(member):
     # print("%s remove!" %(member))
     channel = bot.get_channel(846674619108556823)
-    await channel.send(">>"+str(member)+" leave!")
+    await channel.send(">>"+str(member)+" leave!")    
+
 
 '''@bot.command()
 async def load(ctx, extension):
@@ -50,5 +51,6 @@ for filename in os.listdir("./cmds"):
 ##### THIS IS VERY IMPORTANT ##### 
 # Run the main file : bot.py
 if __name__ == "__main__":
+    # keep_alive.keep_alive()
     bot.run(j_data["token"])
 ##### THIS IS VERY IMPORTANT #####

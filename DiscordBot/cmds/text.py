@@ -1,6 +1,7 @@
 import discord, os, json, asyncio
 from discord.ext import commands
 from core.class_setting import Cog_Extension
+from discord import User
 
 
 with open("setting.json", "r", encoding="utf8") as j_file:
@@ -37,6 +38,7 @@ class Text(Cog_Extension):
     async def tba(self, ctx):
         embed=discord.Embed(title="==ANNOUNCEMENT==", color=0xf6a7cb)
         embed.add_field(name=">>meet", value="An announcement for announcing a meeting.", inline=False)
+        embed.add_field(name=">>F [member]", value="FingBot will say this to someone if you think someone's action is fu*king idiot.", inline=False)
         await ctx.send(embed=embed)
     # Subcommand:>>help (option) ---End
    
@@ -48,8 +50,17 @@ class Text(Cog_Extension):
             await ctx.send(j_data["Gayboi_"+str(i+1)])
     @commands.command()
     async def meet(self, ctx):
-        await ctx.send(j_data["meet"])    
+        await ctx.send(j_data["meet"])   
+
+
+    @commands.command()
+    async def F(self, ctx, user_name):
+        guild = self.bot.get_guild(846674619108556820)
+        for member in guild.members:
+            if user_name == str(member)[:-5]:
+                await ctx.send(member.mention+j_data["F"])  
+            else:
+                pass
         
-    
 def setup(bot):
     bot.add_cog(Text(bot))
