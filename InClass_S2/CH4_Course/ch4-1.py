@@ -24,6 +24,7 @@ def findPos():
 def check_path(direction, mymap, currentPos):
     currentPos_old = currentPos.copy()
     currentPos_new = currentPos.copy()
+    print(currentPos, type(currentPos))
     if direction in ["A", "a"]:
         currentPos_new[1] -= 1
     if direction in ["D", "d"]:
