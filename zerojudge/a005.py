@@ -1,13 +1,7 @@
-'''a = 0
-def a(front, back):
-    if back - front == a:
-        a = back - front 
-        return True
-    else:
-        return False
-
 times = int(input())
 for i in range(times):
-    i = input().split(" ")
-    for j in range(len(i)):
-        a = int(i[1]) - int(i[0])'''
+    a = input().split()
+    if int(a[1])-int(a[0]) == int(a[2])-int(a[1]):
+        print(a[0], a[1], a[2], a[3], int(a[3])+(int(a[1])-int(a[0])))
+    else:
+        print(a[0], a[1], a[2], a[3], round(int(a[3])*(int(a[1])/int(a[0]))))
