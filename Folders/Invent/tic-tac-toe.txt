@@ -1,0 +1,39 @@
+function "drawBoard"
+    print the board
+
+function "inputPlayerXO"
+    ask player to select "O" or "X"
+
+function "whoGoFirst"
+    decide who will go first
+
+function "makeMove"
+    change the icon on the board
+
+function "isWinner"
+    check is anyone win 
+
+function "copyBoard"
+    copy the board that AI can use
+
+function "isSpaceFree"
+    check is space Free
+
+function "getPlayerMove"
+    ask player to dicide a move 
+
+function "chooseRandomMoveFromList"
+    get a random move when AI run
+
+function "getComputerMove"
+    Tic-Tac-Toe AI
+    1.Check if AI win
+    2.stop player win
+    3.center
+    4.dragon
+    5.doubleGo
+    6.corner 
+    7.side
+
+function "isBoardFull"
+    return Trun if the Board is full 
