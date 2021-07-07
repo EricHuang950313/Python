@@ -33,13 +33,15 @@ async def on_member_remove(member):
 
 @bot.command()
 async def reload(ctx, extension):
-    bot.reload_extension("cmds.%s" %extension)
-    await ctx.send("Terminal Developer Update: Reload %s successfully." %extension)
+    if str(ctx.channel) == "指令區":
+      bot.reload_extension("cmds.%s" %extension)
+      await ctx.send("Terminal Developer Update: Reload %s successfully." %extension)
+    else:
+      pass
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):
         bot.load_extension("cmds.%s" %filename[:-3])
 
 if __name__ == "__main__":
-    #keep_alive.keep_alive()
     bot.run(j_data["token"])
