@@ -22,6 +22,7 @@ class text(Cog_Extension):
         if Cog_Extension._statusaa == True:
             await Cog_Extension._aa[0].add_roles(Cog_Extension._aa[1].get_role(862222470111166465)) #role's id 
             await Cog_Extension._aa[0].send("You get role: \"Programmer\"")
+            Cog_Extension._aa = []
             Cog_Extension._statusaa = False
         if Cog_Extension._statusbb == True:
             await Cog_Extension._bb[0].add_roles(Cog_Extension._bb[1].get_role(856450756789927937)) #role's id
