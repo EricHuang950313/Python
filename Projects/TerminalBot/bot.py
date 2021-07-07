@@ -1,6 +1,7 @@
 import discord, os, json
 from discord.ext import commands
 from core.class_setting import Cog_Extension
+import keep_alive
 
 
 with open("setting.json", "r", encoding="utf8") as j_file:
@@ -40,4 +41,5 @@ for filename in os.listdir("./cmds"):
         bot.load_extension("cmds.%s" %filename[:-3])
 
 if __name__ == "__main__":
+    #keep_alive.keep_alive()
     bot.run(j_data["token"])

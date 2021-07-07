@@ -19,11 +19,11 @@ class text(Cog_Extension):
     async def getrole(self, ctx):
         print(Cog_Extension._statusaa, Cog_Extension._statusbb)
         if Cog_Extension._statusaa == True:
-            await Cog_Extension._aa[0].add_roles(Cog_Extension._aa[1].get_role(861559887078359040)) #role's id 
+            await Cog_Extension._aa[0].add_roles(Cog_Extension._aa[1].get_role(862222470111166465)) #role's id 
             await Cog_Extension._aa[0].send("You get role: \"Programmer\"")
             Cog_Extension._statusaa = False
         if Cog_Extension._statusbb == True:
-            await Cog_Extension._bb[0].add_roles(Cog_Extension._bb[1].get_role(861559967114854411)) #role's id
+            await Cog_Extension._bb[0].add_roles(Cog_Extension._bb[1].get_role(856450756789927937)) #role's id
             await Cog_Extension._bb[0].send("You get role: \"Progamer\"")
             Cog_Extension._bb = []
             Cog_Extension._statusbb = False
@@ -47,13 +47,13 @@ class text(Cog_Extension):
         if str(data.emoji) == "💻" and data.message_id==862218874212712459: #message's id
             guild = self.bot.get_guild(data.guild_id)
             user = guild.get_member(data.user_id)
-            role = guild.get_role(861559887078359040) #role's id
+            role = guild.get_role(862222470111166465) #role's id
             await user.remove_roles(role)
             await user.send("You removed role: \"Programmer\"")
         if str(data.emoji) == "🎮" and data.message_id==862218874212712459: #message's id
             guild = self.bot.get_guild(data.guild_id)
             user = guild.get_member(data.user_id)
-            role = guild.get_role(861559967114854411) #role's id
+            role = guild.get_role(856450756789927937) #role's id
             await user.remove_roles(role)
             await user.send("You removed role: \"Progamer\"")
         
