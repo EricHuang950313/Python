@@ -12,22 +12,19 @@ bot = commands.Bot(command_prefix="--ter ", intents=intents, help_command=None)
 @bot.event 
 async def on_ready():
     print("Terminal Status: Online.")
-       
 @bot.event
 async def on_member_join(member):
-    channel = bot.get_channel(846674619108556823)
+    channel = bot.get_channel(861535788499992586)
     await channel.send("@everyone Terminal Update: `"+str(member)+"` joined the server!")
-
 @bot.event
 async def on_member_remove(member):
-    channel = bot.get_channel(846674619108556823)
+    channel = bot.get_channel(861535788499992586)
     await channel.send("@everyone Terminal Update: `"+str(member)+"` leaved the server!")    
 
 # @bot.command()
 # async def load(ctx, extension):
 #     bot.load_extension("cmds.%s" %extension)
 #     await ctx.send("Terminal developer update: Load %s successfully." %extension)
-
 # @bot.command()
 # async def unload(ctx, extension):
 #     bot.unload_extension("cmds.%s" %extension)
@@ -36,7 +33,7 @@ async def on_member_remove(member):
 @bot.command()
 async def reload(ctx, extension):
     bot.reload_extension("cmds.%s" %extension)
-    await ctx.send("Terminal developer update: Reload %s successfully." %extension)
+    await ctx.send("Terminal Developer Update: Reload %s successfully." %extension)
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):
