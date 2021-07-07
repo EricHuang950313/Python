@@ -7,50 +7,40 @@ with open("setting.json", "r", encoding="utf8") as j_file:
     j_data = json.load(j_file)
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix=">>", help_command=None, intents=intents)
+bot = commands.Bot(command_prefix="--ter ", intents=intents, help_command=None)
 
 @bot.event 
 async def on_ready():
-    print(">>System: Bot is online.")
+    print("Terminal Status: Online.")
        
-
 @bot.event
 async def on_member_join(member):
-    # print("%s join!" %(member))
     channel = bot.get_channel(846674619108556823)
-    await channel.send(">>"+str(member)+" join!")
-    await channel.send(">>Hi")
-    await channel.send(">>Nice to see you!")
+    await channel.send("@everyone Terminal Update: `"+str(member)+"` joined the server!")
 
 @bot.event
 async def on_member_remove(member):
-    # print("%s remove!" %(member))
     channel = bot.get_channel(846674619108556823)
-    await channel.send(">>"+str(member)+" leave!")    
-
+    await channel.send("@everyone Terminal Update: `"+str(member)+"` leaved the server!")    
 
 # @bot.command()
 # async def load(ctx, extension):
 #     bot.load_extension("cmds.%s" %extension)
-#     await ctx.send(">>Load %s successfully." %extension)
+#     await ctx.send("Terminal developer update: Load %s successfully." %extension)
 
 # @bot.command()
 # async def unload(ctx, extension):
 #     bot.unload_extension("cmds.%s" %extension)
-#     await ctx.send(">>Unload %s successfully." %extension)
+#     await ctx.send("Terminal developer update: Unload %s successfully." %extension)
 
 @bot.command()
 async def reload(ctx, extension):
     bot.reload_extension("cmds.%s" %extension)
-    await ctx.send(">>Developer: Reload %s successfully." %extension)
+    await ctx.send("Terminal developer update: Reload %s successfully." %extension)
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):
         bot.load_extension("cmds.%s" %filename[:-3])
 
-##### THIS IS VERY IMPORTANT ##### 
-# Run the main file : bot.py
 if __name__ == "__main__":
-    # keep_alive.keep_alive()
     bot.run(j_data["token"])
-##### THIS IS VERY IMPORTANT #####
