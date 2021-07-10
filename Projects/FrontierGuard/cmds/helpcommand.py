@@ -28,6 +28,7 @@ class helpcommand(Cog_Extension):
     async def pic(self, ctx):
         embed=discord.Embed(title="==PICTURE==", color=0xf6a7cb)
         embed.add_field(name=">>ty", value="Aka emoji\":heart:\"or\":heart_eyes:\".", inline=False)
+        embed.add_field(name=">>winnie", value="Winnie^^", inline=False)
         await ctx.send(embed=embed)
     @help.command()
     async def ency(self, ctx):
