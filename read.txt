@@ -1,0 +1,38 @@
+Beautiful is better than ugly.
+優美勝於醜陋。
+Explicit is better than implicit.
+明確勝於隱晦。
+Simple is better than complex.
+簡單勝於複雜。
+Complex is better than complicated.
+複雜勝於難懂。
+Flat is better than nested.
+平坦勝於築巢。
+Sparse is better than dense.
+分散勝於密集。
+Readability counts.
+可讀性十分重要。
+Special cases aren't special enough to break the rules.
+特例也不該打破這些規則。
+Although practicality beats purity.
+即使實用性打敗了純粹性。
+Errors should never pass silently.
+錯誤不該無聲地被忽略。
+Unless explicitly silenced.
+除非你如此期望。
+In the face of ambiguity, refuse the temptation to guess.
+面對雙關的語意時，拒絕猜測的誘惑。
+There should be one-- and preferably only one --obvious way to do it.
+用明顯的方式解決一件事，最好只有一種。
+Although that way may not be obvious at first unless you're Dutch.
+這在一開始並不是件容易的事，誰叫你不是荷蘭人呢？
+Now is better than never.
+立刻動手勝於停滯不前，
+Although never is often better than *right* now.
+即使停滯不前時常勝於立刻動手。
+If the implementation is hard to explain, it's a bad idea.
+如果實作難以被說明，那就是個壞主意。
+If the implementation is easy to explain, it may be a good idea.
+如果實作能輕鬆被說明，那可能是個好主意。
+Namespaces are one honking great idea -- let's do more of those!
+命名空間是個絕妙的點子，我們應當多加利用！
