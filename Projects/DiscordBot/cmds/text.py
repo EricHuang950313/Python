@@ -8,32 +8,6 @@ with open("setting.json", "r", encoding="utf8") as j_file:
     j_data = json.load(j_file)
 
 class text(Cog_Extension):      
-    @commands.group(invoke_without_command=True)
-    async def help(self, ctx):
-        embed=discord.Embed(title=">> H E L P    C O M M A N D S", description="Type \">>help\" command for more information about Fing_Bot commands.<Ver0.5.1>", color=0xf6a7cb)
-        embed.set_thumbnail(url="https://cdn.pixabay.com/photo/2020/10/31/19/25/robot-5702074_1280.png")
-        embed.add_field(name="Ⅰ.ENCYCLOPEDIA", value=">>help ency", inline=True)
-        embed.add_field(name="Ⅱ.PICTURE", value=">>help pic", inline=True)
-        embed.add_field(name="Ⅲ.ANNOUNCEMENT", value=">>help tba", inline=False)
-        await ctx.send(embed=embed)
-
-    @help.command()
-    async def ency(self, ctx):
-        embed=discord.Embed(title="==ENCYCLOPEDIA==", color=0xf6a7cb)
-        embed.add_field(name=">>gayboi", value="The contents of who is gayboy.", inline=False)
-        await ctx.send(embed=embed)
-    @help.command()
-    async def pic(self, ctx):
-        embed=discord.Embed(title="==PICTURE==", color=0xf6a7cb)
-        embed.add_field(name=">>ty", value="Aka emoji\":heart:\"or\":heart_eyes:\".", inline=False)
-        await ctx.send(embed=embed)
-    @help.command()
-    async def tba(self, ctx):
-        embed=discord.Embed(title="==ANNOUNCEMENT==", color=0xf6a7cb)
-        embed.add_field(name=">>F [member]", value="FingBot will say this to someone if you think someone's action is fu*king idiot.", inline=False)
-        await ctx.send(embed=embed)
-   
-        
     @commands.command()
     async def gayboi(self, ctx):
         for i in range(5):
@@ -47,6 +21,7 @@ class text(Cog_Extension):
                 await ctx.send(member.mention+j_data["F"])  
             else:
                 pass
+        
         
 def setup(bot):
     bot.add_cog(text(bot))

@@ -11,6 +11,10 @@ class picture(Cog_Extension):
     async def ty(self, ctx):
         picture = j_data["ty"]
         await ctx.send(picture)
+    @commands.command()
+    async def winnie(self, ctx):
+        picture = j_data["winnie"]
+        await ctx.send(picture)
 
 
 def setup(bot):
