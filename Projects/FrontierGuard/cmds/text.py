@@ -15,7 +15,7 @@ class text(Cog_Extension):
             await ctx.send(j_data["Gayboi_"+str(i+1)]) 
     @commands.command()
     async def F(self, ctx, user_name):
-        guild = self.bot.get_guild(846674619108556820)
+        guild = self.bot.get_guild(855062319036760104)
         for member in guild.members:
             if user_name == str(member)[:-5]:
                 await ctx.send(member.mention+j_data["F"])  
