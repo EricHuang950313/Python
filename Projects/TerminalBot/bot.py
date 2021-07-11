@@ -33,9 +33,16 @@ async def on_member_remove(member):
 
 @bot.command()
 async def reload(ctx, extension):
-    if str(ctx.channel) == "指令區":
+    if str(ctx.channel) == "指令區" and ctx.author.id == 776807118481129532 or str(ctx.channel) == "指令區" and ctx.author.id == 465866092875612189:
       bot.reload_extension("cmds.%s" %extension)
       await ctx.send("Terminal Developer Update: Reload %s successfully." %extension)
+    else:
+      pass
+
+@bot.command()
+async def cls(ctx, amount):
+    if ctx.author.id == 776807118481129532 or ctx.author.id == 465866092875612189:
+      await ctx.channel.purge(limit=int(amount)+1)
     else:
       pass
 
