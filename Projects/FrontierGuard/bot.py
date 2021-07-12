@@ -1,7 +1,6 @@
 import discord, os, json
 from discord.ext import commands
 from core.class_setting import Cog_Extension
-import keep_alive
 
 
 with open("setting.json", "r", encoding="utf8") as j_file:
@@ -14,12 +13,11 @@ client = discord.Client()
 @bot.event
 async def on_ready():
     print(">>System:Bot is online.")
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game(">>help"))
 
 @bot.event
 async def on_member_join(member):
     # print("%s join!" %(member))
-    channel = bot.get_channel(855062319435087881)
+    channel = bot.get_channel(855062319050260514)
     await channel.send(">>"+str(member)+" join!")
     await channel.send(">>Hi")
     await channel.send(">>Nice to see you!")
@@ -27,7 +25,7 @@ async def on_member_join(member):
 @bot.event
 async def on_member_remove(member):
     # print("%s remove!" %(member))
-    channel = bot.get_channel(855062319435087881)
+    channel = bot.get_channel(855062319050260514)
     await channel.send(">>"+str(member)+" leave!")
 
 # @bot.command()
@@ -42,8 +40,11 @@ async def on_member_remove(member):
 
 @bot.command()
 async def reload(ctx, extension):
-    bot.reload_extension("cmds.%s" %extension)
-    await ctx.send(">>Developer: Reload %s successfully." %extension)
+    if ctx.author.id == 776807118481129532:
+        bot.reload_extension("cmds.%s" %extension)
+        await ctx.send(">>Developer: Reload %s successfully." %extension)
+    else: 
+        pass
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):

@@ -1,4 +1,4 @@
-import discord, os, json, asyncio
+import discord, os, json
 from discord.ext import commands
 from core.class_setting import Cog_Extension
 

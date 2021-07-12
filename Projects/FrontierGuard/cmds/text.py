@@ -1,7 +1,7 @@
 import discord, os, json, asyncio
 from discord.ext import commands
-from core.class_setting import Cog_Extension
 from discord import User
+from core.class_setting import Cog_Extension
 
 
 with open("setting.json", "r", encoding="utf8") as j_file:
