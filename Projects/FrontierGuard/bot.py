@@ -1,6 +1,7 @@
 import discord, os, json
 from discord.ext import commands
 from core.class_setting import Cog_Extension
+import keep_alive
 
 
 with open("setting.json", "r", encoding="utf8") as j_file:
