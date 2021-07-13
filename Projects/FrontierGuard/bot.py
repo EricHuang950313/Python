@@ -54,5 +54,6 @@ for filename in os.listdir("./cmds"):
 ##### THIS IS VERY IMPORTANT ##### 
 # Run the main file : bot.py
 if __name__ == "__main__":
-  bot.run(j_data["token"])
+    keep_alive.keep_alive()
+    bot.run(j_data["token"])
 ##### THIS IS VERY IMPORTANT #####
