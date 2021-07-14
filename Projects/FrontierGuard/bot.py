@@ -46,6 +46,19 @@ async def reload(ctx, extension):
         await ctx.send(">>Developer: Reload %s successfully." %extension)
     else: 
         pass
+@bot.command()
+async def cls(ctx, amount):
+    if ctx.author.id == 776807118481129532:
+      await ctx.channel.purge(limit=int(amount)+1)
+    else:
+      pass
+@bot.command()
+async def saydev(ctx, *, msg):
+    if ctx.author.id == 776807118481129532:
+        await ctx.message.delete()
+        await ctx.send(str(msg))
+    else: 
+        pass
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):
