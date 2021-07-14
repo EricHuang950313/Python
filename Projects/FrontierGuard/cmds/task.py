@@ -54,7 +54,7 @@ class task(Cog_Extension):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if msg.content == "早安" and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 1330) >= 0 and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 1330) < 30:
+        if msg.content == "早安" and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 730) >= 0 and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 730) < 30:
             with open("check.json", "r", encoding="utf-8") as checkr_file:
                 try:
                     check_data = json.load(checkr_file)
