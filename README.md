@@ -6,7 +6,7 @@
 >* "Highschool Student" in Hsinchu, Taiwan.
 
 ## Projects
-> **Frontier Bot:** A personal entertainment Discord bot.<br> 
-> **Terminal Bot:** A personal Discord bot which offers functions like CMD.<br>
+> **Frontier Bot:** A personal entertainment Discord bot. [Code](https://github.com/EricHuang950313/Python/tree/master/Projects/TerminalBot)<br> 
+> **Terminal Bot:** A personal Discord bot which offers functions like CMD. [Code](https://github.com/EricHuang950313/Python/tree/master/Projects/FrontierGuard)<br>
 
 ## Folders
