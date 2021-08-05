@@ -1,4 +1,4 @@
-with open("read.txt", mode="r", encoding="utf-8") as file:
+with open("ZenRead.txt", mode="r", encoding="utf-8") as file:
   for count, line in enumerate(file):
       print(line)
       if (count+1) % 2 == 0:
