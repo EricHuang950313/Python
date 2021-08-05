@@ -10,3 +10,4 @@
 > **Terminal Bot:** A personal Discord bot which offers functions like CMD. [Code](https://github.com/EricHuang950313/Python/tree/master/Projects/FrontierGuard)<br>
 
 ## Folders
+> Still Developing
