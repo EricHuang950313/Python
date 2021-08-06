@@ -21,8 +21,7 @@ class mySort():
 
 
     def selection_sort(self):
-        toSort = []
-        toSort += [i for i in self.l]
+        toSort = [i for i in self.l]
         for i in range(len(toSort)-1):
             if self.check(toSort) == True:
                 if i == 0:
@@ -40,8 +39,7 @@ class mySort():
 
 
     def insertion_sort(self):
-        toSort = []
-        toSort += [i for i in self.l]
+        toSort = [i for i in self.l]
         for i in range(1, len(toSort)):
             if self.check(toSort) == True:
                 if i == 1:
@@ -62,8 +60,7 @@ class mySort():
 
 
     def bubble_sort(self):
-        toSort = []
-        toSort += [i for i in self.l]
+        toSort = [i for i in self.l]
         if self.check(toSort) == True:
             print("None")
         else:
