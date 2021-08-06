@@ -1,0 +1,10 @@
+[01/01/00 00:00:00 DEBUG   ] debug
+[01/01/00 00:00:00 INFO    ] info
+[01/01/00 00:00:00 WARNING ] warning
+[01/01/00 00:00:00 ERROR   ] error
+[01/01/00 00:00:00 CRITICAL] critical
+01/01/00-00:00:00, file_name"logC.py"[DEBUG   ]: debug message
+01/01/00-00:00:00, file_name"logC.py"[INFO    ]: info message
+01/01/00-00:00:00, file_name"logC.py"[WARNING ]: warn message
+01/01/00-00:00:00, file_name"logC.py"[ERROR   ]: error message
+01/01/00-00:00:00, file_name"logC.py"[CRITICAL]: critical message
