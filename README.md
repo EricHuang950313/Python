@@ -5,8 +5,10 @@
 >* "Python/HTML/CSS/Javascript/C/Cpp" Programmer.
 >* "Highschool Student" in Hsinchu, Taiwan.
 
+## Python
 ## Projects
 > **Frontier Bot:** A personal entertainment Discord bot. [Code](https://github.com/EricHuang950313/Python/tree/master/Projects/TerminalBot)<br> 
 > **Terminal Bot:** A personal Discord bot which offers functions like CMD. [Code](https://github.com/EricHuang950313/Python/tree/master/Projects/FrontierGuard)<br>
 
 ## Folders
+> Still Developing
