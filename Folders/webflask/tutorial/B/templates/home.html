@@ -1,0 +1,20 @@
+<!-- Use the HTML code from layout.html -->
+{% extends "layout.html" %} 
+<!-- {#{% block content %}{% endblock %}#} in layout.html (Variable "content" is changeable)-->
+{% block content %}
+    <!-- posts: The given argument in main.py render_template-->
+    {% for post in posts %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.contents }}</p>
+        </div>
+    </article>
+    <!-- end -->
+    {% endfor %}
+<!-- end -->
+{% endblock content %}
