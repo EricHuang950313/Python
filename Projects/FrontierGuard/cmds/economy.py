@@ -42,7 +42,6 @@ class economy(Cog_Extension):
         exist, name = self.data_check_user_exsit(ctx)
         if exist == True:
             await ctx.send(f"You've already registered! Your name is \"{name}\"")
-
         else:
             await ctx.send("Start to Register!")
             await ctx.send("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️for confirm; ❌for cancel.``")
