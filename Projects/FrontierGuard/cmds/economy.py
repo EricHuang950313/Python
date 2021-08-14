@@ -30,6 +30,7 @@ class economy(Cog_Extension):
               return True
 
         await ctx.send("Please enter: \"A\" to start the process. \"B\" to leave.")
+        await ctx.message.add_reaction(":grinning:")
         try:
             await self.bot.wait_for(event="message",check=check_A, timeout=15)
         except asyncio.TimeoutError:

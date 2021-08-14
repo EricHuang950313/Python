@@ -10,7 +10,7 @@ class task(Cog_Extension):
         async def status():
             await self.bot.wait_until_ready()
             while not self.bot.is_closed():
-                await self.bot.change_presence(status=discord.Status.online, activity=discord.Game(">>help"))
+                await self.bot.change_presence(status=discord.Status.invisible, activity=discord.Game(">>help"))
                 await asyncio.sleep(120)
         self.backgroundTa = self.bot.loop.create_task(status())
 
