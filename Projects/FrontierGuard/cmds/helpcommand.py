@@ -12,6 +12,7 @@ class helpcommand(Cog_Extension):
         embed.add_field(name="Ⅱ.ECONOMY", value=">>help eco", inline=False)
         embed.add_field(name="Ⅲ.PICTURE", value=">>help pic", inline=False)
         embed.add_field(name="Ⅳ.ENCYCLOPEDIA", value=">>help ency", inline=False)
+        embed.add_field(name="<S>.errorCODE", value=">>help eC", inline=False)
         await ctx.send(embed=embed)
 
     @help.command()
@@ -23,7 +24,7 @@ class helpcommand(Cog_Extension):
     @help.command()
     async def eco(self, ctx):
         embed=discord.Embed(title="==ECONOMY==", color=0xf6a7cb)
-        embed.add_field(name="O.o", value="Still Developing...", inline=False)
+        embed.add_field(name=">>register", value="Register an account.", inline=False)
         await ctx.send(embed=embed)
     @help.command()
     async def pic(self, ctx):
@@ -35,6 +36,11 @@ class helpcommand(Cog_Extension):
     async def ency(self, ctx):
         embed=discord.Embed(title="==ENCYCLOPEDIA==", color=0xf6a7cb)
         embed.add_field(name=">>gayboi", value="The contents of who is gayboy.", inline=False)
+        await ctx.send(embed=embed)
+    @help.command()
+    async def eC(self, ctx):
+        embed=discord.Embed(title="==errorCODE==", color=0xf6a7cb)
+        embed.add_field(name="errorCODE=001", value="Out of time error.", inline=False)
         await ctx.send(embed=embed)
 
 
