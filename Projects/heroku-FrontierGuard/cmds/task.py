@@ -1,4 +1,4 @@
-import discord, json, asyncio
+import discord, json, asyncio, requests
 from datetime import datetime, timezone, timedelta
 from discord.ext import commands, tasks
 from core.class_setting import Cog_Extension
@@ -7,78 +7,65 @@ from core.class_setting import Cog_Extension
 class task(Cog_Extension):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        
         async def status():
             await self.bot.wait_until_ready()
             while not self.bot.is_closed():
-                await self.bot.change_presence(status=discord.Status.online, activity=discord.Game(">>help"))
+                await self.bot.change_presence(status=discord.Status.invisible, activity=discord.Game(">>help"))
                 await asyncio.sleep(120)
         self.backgroundTa = self.bot.loop.create_task(status())
 
-        async def hello():
+        async def update():
             await self.bot.wait_until_ready()
             self.channel = self.bot.get_channel(855062319435087872)
             while not self.bot.is_closed():
-                if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "073000":
-                    await self.channel.send("Goodmorning! 早安! おはようございます!")
-                    await asyncio.sleep(1)
-                elif datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "223000":
-                    await self.channel.send("Goodnight! 晚安! おやすみなさい!")
-                    await asyncio.sleep(1)
-                else:
-                    await asyncio.sleep(1)
-        self.backgroundTb = self.bot.loop.create_task(hello())
-        
-        async def checklist():
-            await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(855062319435087872)
-            while not self.bot.is_closed():
-                if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "075900" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "225900":
-                    with open("check.json", "r", encoding="utf-8") as checkrl_file:
-                        try:
-                            checkl_data = json.load(checkrl_file)
-                            op = ""
-                            for i in checkl_data:
-                                op = op + i + "\n"
-                            await self.channel.send("Sign In Result aka 點名結果:\n```"+op+"```")
-                        except json.decoder.JSONDecodeError:
-                            await self.channel.send("Sign In Result aka 點名結果: ```None! 沒人```")
-                    with open("check.json", "w", encoding="utf-8") as checkwl_file:
-                        pass
+                if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
+                    API_URL = "<JsonStorage_URL>"
+                    response = requests.get(API_URL)
+                    print(response)
+                    new_data = {"record": 0, "FrontierGuard#5696": True}
+                    update = requests.put(API_URL, json=new_data)
+                    print(update)
                     await asyncio.sleep(1)
                 else:
                     await asyncio.sleep(1)
-        self.backgroundTc = self.bot.loop.create_task(checklist())
+        self.backgroundTb = self.bot.loop.create_task(update())
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if msg.content in "Goodmorning早安おはようございます" and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 729) >= 0 and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 730) < 29:
-            with open("check.json", "r", encoding="utf-8") as checkr_file:
-                try:
-                    check_data = json.load(checkr_file)
-                    first = False
-                except json.decoder.JSONDecodeError:
-                    first = True
-            with open("check.json", "w", encoding="utf-8") as checkw_file:
-                if first == True:
-                    json.dump({str(msg.author):"True"}, checkw_file, indent=4)
-                    first = False
+        if (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200 or (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000:
+            API_URL = "<JsonStorage_URL>"
+            DIGIT_LIST = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
+            response = requests.get(API_URL)
+            data = response.json()
+            for author in data:
+                if author == str(msg.author):
+                    break
+            else:
+                if data["record"] == 0:
+                        await msg.add_reaction("👑")
+                        if msg.content in ["Goodmorning", "早安", "おはようございます"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200:
+                            await msg.channel.send("Goodmorning! 早安! おはようございます! ")
+                        if msg.content in ["Goodnight", "晚安", "おやすみなさい"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000:
+                            await msg.channel.send("Goodnight! 晚安! おやすみなさい! ")
+                        data["record"] = 1 
+                        data[str(msg.author)] = True
+                elif data["record"] == 10:
+                    data["record"] = data["record"] + 1
+                    data[str(msg.author)] = True
+                    await msg.add_reaction(DIGIT_LIST[1])
+                    await msg.add_reaction(DIGIT_LIST[0])
                 else:
-                    check_data[str(msg.author)] = "True"
-                    json.dump(check_data, checkw_file, indent=4)
-        if msg.content in "Goodnight晚安おやすみなさい" and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 2229) >= 0 and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")) - 2230) < 29:
-            with open("check.json", "r", encoding="utf-8") as checkr_file:
-                try:
-                    check_data = json.load(checkr_file)
-                    first = False
-                except json.decoder.JSONDecodeError:
-                    first = True
-            with open("check.json", "w", encoding="utf-8") as checkw_file:
-                if first == True:
-                    json.dump({str(msg.author):"True"}, checkw_file, indent=4)
-                    first = False
-                else:
-                    check_data[str(msg.author)] = "True"
-                    json.dump(check_data, checkw_file, indent=4)
+                    data["record"] = data["record"] + 1
+                    data[str(msg.author)] = True
+                    if len(str(data["record"])) == 1:
+                        await msg.add_reaction(DIGIT_LIST[0])
+                        await msg.add_reaction(DIGIT_LIST[data["record"]])
+                    else:
+                        pass
+                update = requests.put(API_URL, json=data)
+        else:
+            pass
 
     @commands.command()
     async def setChannel(self, ctx, channel):
