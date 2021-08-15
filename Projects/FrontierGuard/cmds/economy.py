@@ -15,9 +15,7 @@ class economy(Cog_Extension):
         if collection.count_documents({"_id": ctx.author.id}, limit = 1) != 0:
             return True, collection.find_one({"_id":ctx.author.id})["name"]
         else:
-            return False, False
-    def data_insert(self, content, collection):
-        collection.insert_one(content)
+            return False, False        
 
     @commands.command()
     async def register(self, ctx):
@@ -31,7 +29,7 @@ class economy(Cog_Extension):
             if user == ctx.author and str(reaction.emoji) == "✔️":
                 post = {"_id": ctx.author.id, "name": str(add_reaction_message.content)}
                 cluster, database, collection = self.data_connect()
-                self.data_insert(post, collection)
+                collection.insert_one(post)
                 addorcancel = True
                 return True
             elif user == ctx.author and str(reaction.emoji) == "❌":
@@ -41,7 +39,7 @@ class economy(Cog_Extension):
         await ctx.send("Wait For Checking...")
         exist, name = self.data_check_user_exsit(ctx)
         if exist == True:
-            await ctx.send(f"You've already registered! Your name is \"{name}\"")
+            await ctx.send(f"You've already registered! Your name is \"{name}\".")
         else:
             await ctx.send("Start to Register!")
             await ctx.send("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️for confirm; ❌for cancel.``")

@@ -37,10 +37,12 @@ class helpcommand(Cog_Extension):
         embed=discord.Embed(title="==ENCYCLOPEDIA==", color=0xf6a7cb)
         embed.add_field(name=">>gayboi", value="The contents of who is gayboy.", inline=False)
         await ctx.send(embed=embed)
+
     @help.command()
     async def eC(self, ctx):
         embed=discord.Embed(title="==errorCODE==", color=0xf6a7cb)
         embed.add_field(name="errorCODE=001", value="Out of time error.", inline=False)
+        embed.add_field(name="errorCODE=101", value="FOR GOODMORNING/GOODNIGHT: Same ranking if deviation in 1.5 second.", inline=False)
         await ctx.send(embed=embed)
 
 

@@ -8,7 +8,6 @@ with open("read_info.json", "r", encoding="utf8") as j_file:
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix=">>", help_command=None, intents=intents)
-client = discord.Client()
 
 @bot.event
 async def on_ready():
