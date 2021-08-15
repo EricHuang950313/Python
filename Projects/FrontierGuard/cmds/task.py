@@ -20,10 +20,12 @@ class task(Cog_Extension):
             self.channel = self.bot.get_channel(855062319435087872)
             while not self.bot.is_closed():
                 if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
-                    API_URL = "https://api.jsonstorage.net/v1/json/62e175fb-cbda-47d1-832c-830e97b27b72"
+                    API_URL = "<JsonStorage_URL>"
                     response = requests.get(API_URL)
-                    new_data = {"record": 0, "FrontierGuard#5696": true}
-                    update = requests.put(API_URL, json=data)
+                    print(response)
+                    new_data = {"record": 0, "FrontierGuard#5696": True}
+                    update = requests.put(API_URL, json=new_data)
+                    print(update)
                     await asyncio.sleep(1)
                 else:
                     await asyncio.sleep(1)
@@ -32,7 +34,7 @@ class task(Cog_Extension):
     @commands.Cog.listener()
     async def on_message(self, msg):
         if (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200 or (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000:
-            API_URL = "https://api.jsonstorage.net/v1/json/62e175fb-cbda-47d1-832c-830e97b27b72"
+            API_URL = "<JsonStorage_URL>"
             DIGIT_LIST = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
             response = requests.get(API_URL)
             data = response.json()
@@ -42,9 +44,9 @@ class task(Cog_Extension):
             else:
                 if data["record"] == 0:
                         await msg.add_reaction("👑")
-                        if msg.content in ["Goodmorning", "早安", "おはようございます"]:
+                        if msg.content in ["Goodmorning", "早安", "おはようございます"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200:
                             await msg.channel.send("Goodmorning! 早安! おはようございます! ")
-                        if msg.content in ["Goodnight", "晚安", "おやすみなさい"]:
+                        if msg.content in ["Goodnight", "晚安", "おやすみなさい"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000:
                             await msg.channel.send("Goodnight! 晚安! おやすみなさい! ")
                         data["record"] = 1 
                         data[str(msg.author)] = True

@@ -6,7 +6,7 @@ from core.class_setting import Cog_Extension
 
 class economy(Cog_Extension):
     def data_connect(self):
-        cluster = MongoClient("mongodb+srv://EricHuang:mongoDBdiscorddatabaseFG@clustera.hm4zc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        cluster = MongoClient("mongodb+srv://EricHuang:<Password>@clustera.hm4zc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         database = cluster["database_discordFG"] 
         collection = database["collection_discordFG"]
         return cluster, database, collection
