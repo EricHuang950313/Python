@@ -13,7 +13,7 @@ class text(Cog_Extension):
         guild = self.bot.get_guild(855062319036760104)
         for member in guild.members:
             if user_name == str(member)[:-5]:
-                await ctx.send(member.mention+j_data["F"])  
+                await ctx.send(f"{member.mention} {j_data['F']}")  
             else:
                 pass
     @commands.command()
