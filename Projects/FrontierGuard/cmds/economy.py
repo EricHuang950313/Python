@@ -6,7 +6,7 @@ from core.class_setting import Cog_Extension
 
 class economy(Cog_Extension):
     def data_connect(self):
-        cluster = MongoClient("mongodb+srv://EricHuang:<Password>@clustera.hm4zc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        cluster = MongoClient("<mongoDB URL>")
         database = cluster["database_discordFG"] 
         collection = database["collection_discordFG"]
         return cluster, database, collection
@@ -21,7 +21,7 @@ class economy(Cog_Extension):
     async def register(self, ctx):
         def check_A(msg):
             global add_reaction_message
-            if msg.content != ("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️for confirm; ❌for cancel.``"):
+            if msg.content != ("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️ for confirm; ❌for cancel.``"):
                 add_reaction_message = msg
                 return True
         def check_B(reaction, user):
@@ -42,7 +42,7 @@ class economy(Cog_Extension):
             await ctx.send(f"You've already registered! Your name is \"{name}\".")
         else:
             await ctx.send("Start to Register!")
-            await ctx.send("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️for confirm; ❌for cancel.``")
+            await ctx.send("``Account Registration Guide:\n  Step1-Please Input Your Name.\n  Step2-Waiting for generating ✔️ and ❌.\n  Step3-Click: ✔️ for confirm; ❌for cancel.``")
             try:
                 await self.bot.wait_for(event="message",check=check_A, timeout=30)
             except asyncio.TimeoutError:
