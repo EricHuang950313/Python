@@ -22,10 +22,8 @@ class task(Cog_Extension):
                 if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
                     API_URL = "<Json Storage URL>"
                     response = requests.get(API_URL)
-                    print(response)
                     new_data = {"record": 0, "FrontierGuard#5696": True}
                     update = requests.put(API_URL, json=new_data)
-                    print(update)
                     await asyncio.sleep(1)
                 else:
                     await asyncio.sleep(1)

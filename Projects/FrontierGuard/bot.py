@@ -69,6 +69,9 @@ async def dev_announce(ctx, *, msg):
         await ctx.send(f"```FrontierBot Update:\n{msg}```")
     else: 
         await ctx.send("Sorry! You DO NOT have the permission.")
+'''@bot.event
+async def on_raw_reaction_add(data):
+    print(data.emoji)'''
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):

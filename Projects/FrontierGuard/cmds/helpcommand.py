@@ -40,6 +40,7 @@ class helpcommand(Cog_Extension):
     async def eC(self, ctx):
         embed=discord.Embed(color=0xffca57)
         embed.add_field(name="errorCODE=001", value="Out of time error.", inline=False)
+        embed.add_field(name="errorCODE=002", value="Value incorrect error.", inline=False)
         embed.add_field(name="errorCODE=101", value="FOR GOODMORNING/GOODNIGHT: Same ranking if deviation in 1.5 second.", inline=False)
         await ctx.send(embed=embed)
 
