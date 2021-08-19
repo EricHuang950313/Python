@@ -57,14 +57,14 @@ class economy(Cog_Extension):
             try:
                 await self.bot.wait_for(event="message",check=check_A, timeout=30)
             except asyncio.TimeoutError:
-                await ctx.send("Registration Failed! (errorCODE=001)")
+                await ctx.send("Registration Failed! (errorCODE=101)")
             else:
                 await add_reaction_message.add_reaction("✔️")
                 await add_reaction_message.add_reaction("❌")
                 try:
                     await self.bot.wait_for(event="reaction_add",check=check_B, timeout=10)
                 except asyncio.TimeoutError:
-                    await ctx.send("Registration Failed! (errorCODE=001)")
+                    await ctx.send("Registration Failed! (errorCODE=101)")
                 else:
                     if addorcancel == False:
                         await ctx.send("Registration Canceled!")
@@ -134,16 +134,16 @@ class economy(Cog_Extension):
             try:
                 await self.bot.wait_for(event="reaction_add",check=check_A, timeout=15)
             except asyncio.TimeoutError:
-                await ctx.send("Transfer Failed! (errorCODE=001)")
+                await ctx.send("Transfer Failed! (errorCODE=101)")
             else:
                 await ctx.send("Please input the amount:")
                 try:
                     await self.bot.wait_for(event="message",check=check_B, timeout=15)
                 except asyncio.TimeoutError:
-                    await ctx.send("Transfer Failed! (errorCODE=001)")
+                    await ctx.send("Transfer Failed! (errorCODE=101)")
                 else:
                     if sorf == False:
-                        await ctx.send("Transfer Failed! (errorCODE=002)")
+                        await ctx.send("Transfer Failed! (errorCODE=102)")
                     else:
                         if t == 1:
                             await ctx.send("Successfully transfer money from wallet to bank.")

@@ -38,12 +38,20 @@ class helpcommand(Cog_Extension):
         await ctx.send(embed=embed)
     @help.command()
     async def eC(self, ctx):
-        embed=discord.Embed(color=0xffca57)
-        embed.add_field(name="errorCODE=001", value="Out of time error.", inline=False)
-        embed.add_field(name="errorCODE=002", value="Value incorrect error.", inline=False)
-        embed.add_field(name="errorCODE=101", value="FOR GOODMORNING/GOODNIGHT: Same ranking if deviation in 1.5 second.", inline=False)
-        await ctx.send(embed=embed)
-
+        embedA=discord.Embed(color=0xffca57)
+        embedB=discord.Embed(color=0xffca57)
+        embedC=discord.Embed(color=0xffca57)
+        embedA.add_field(name="errorCODE starts with 0 (Command input error):", value="\u200b", inline=False)
+        embedA.add_field(name="errorCODE=001", value="Command not found error.", inline=False)
+        embedA.add_field(name="errorCODE=002", value="Exception error.", inline=False)
+        embedB.add_field(name="errorCODE starts with 1 (Economy user input error):", value="\u200b", inline=False)
+        embedB.add_field(name="errorCODE=101", value="Out of time error.", inline=False)
+        embedB.add_field(name="errorCODE=102", value="Value incorrect error.\n", inline=False)
+        embedC.add_field(name="errorCODE starts with 2 (Background tasks system error):", value="\u200b", inline=False)
+        embedC.add_field(name="errorCODE=201", value="FOR GOODMORNING/GOODNIGHT: Same ranking if deviation in 1.5 second.\n", inline=False)
+        await ctx.send(embed=embedA)
+        await ctx.send(embed=embedB)
+        await ctx.send(embed=embedC)
 
 def setup(bot):
     bot.add_cog(helpcommand(bot))
