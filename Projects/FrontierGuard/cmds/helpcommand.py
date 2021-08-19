@@ -3,21 +3,25 @@ from discord.ext import commands
 from core.class_setting import Cog_Extension
 
 
-class helpcommand(Cog_Extension):  
+class helpcommand(Cog_Extension):
     @commands.group(invoke_without_command=True)
     async def help(self, ctx):
-        embed=discord.Embed(title="ＵＳＥＲ  ＧＵＩＤＥ", description="\">>help\" command helps you easily get hang of using the bot.\n<Ver1.6.0Beta>", color=0xffca57)
-        embed.add_field(name="Ⅰ. ANNOUNCEMENT", value=">>help tba", inline=False)
-        embed.add_field(name="Ⅱ. ECONOMY", value=">>help eco", inline=False)
-        embed.add_field(name="Ⅲ. ENCYCLOPEDIA", value=">>help ency", inline=False)
-        embed.add_field(name="Ⅳ. PICTURE", value=">>help pic", inline=False)
-        embed.add_field(name="<S>. errorCODE", value=">>help eC", inline=False)
-        await ctx.send(embed=embed)
+        if ctx.message.content[5:] not in ["tba", "eco", "ency", "pic", "eC"]:
+            await ctx.send("Command NOT FOUND! (errorCODE=001)")
+            await ctx.send("Try\">>help\" for checking commands.")
+        else:
+            embed=discord.Embed(title="ＵＳＥＲ  ＧＵＩＤＥ", description="\">>help\" command helps you easily get hang of using the bot.\n<Ver1.6.0Beta>", color=0xffca57)
+            embed.add_field(name="Ⅰ. ANNOUNCEMENT", value=">>help tba", inline=False)
+            embed.add_field(name="Ⅱ. ECONOMY", value=">>help eco", inline=False)
+            embed.add_field(name="Ⅲ. ENCYCLOPEDIA", value=">>help ency", inline=False)
+            embed.add_field(name="Ⅳ. PICTURE", value=">>help pic", inline=False)
+            embed.add_field(name="<S>. errorCODE", value=">>help eC", inline=False)
+            await ctx.send(embed=embed)
 
     @help.command()
     async def tba(self, ctx):
         embed=discord.Embed(title="ANNOUCEMENT", color=0xffca57)
-        embed.add_field(name=">>F [member]", value="Bot will say f*** to [member] if you think [member]'s action is idiot.", inline=False)
+        embed.add_field(name=">>F [member]", value="Bot will say something to [member] if you think [member]'s action is idiot.", inline=False)
         embed.add_field(name=">>saysub [user_input]", value="Bot will say [user_input] instead of you.", inline=False)
         await ctx.send(embed=embed)
     @help.command()
