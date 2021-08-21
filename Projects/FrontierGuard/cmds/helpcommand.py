@@ -28,6 +28,11 @@ class helpcommand(Cog_Extension):
     async def eco(self, ctx):
         embed=discord.Embed(title="ECONOMY", color=0xffca57)
         embed.add_field(name=">>register", value="Register an account.", inline=False)
+        embed.add_field(name=">>deposit", value="Check your account's deposit.", inline=False)
+        embed.add_field(name=">>to", value="Transfer $ between bank and wallet.", inline=False)
+        embed.add_field(name=">>work", value="Work for 60~90mins to earn 150~250$.", inline=False)
+        embed.add_field(name=">>give [member] [$amount]", value="Give [member] [$amount]$.", inline=False)
+        embed.add_field(name=">>rob [bank/member]", value="Rob some money from bank or member.", inline=False)
         await ctx.send(embed=embed)
     @help.command()
     async def ency(self, ctx):

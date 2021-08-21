@@ -41,7 +41,7 @@ def authentication(id):
 @bot.command()
 async def dev(ctx):
     if authentication(ctx.author.id) == True:
-        embed=discord.Embed(title="==Developer_Commands==", color=0xf6a7cb)
+        embed=discord.Embed(title="==Developer_Commands==", color=0xffca57)
         embed.add_field(name=">>dev_reload [name]", value="Reload File.", inline=False)
         embed.add_field(name=">>dev_cls [amounts]", value="Clean messages.", inline=False)
         embed.add_field(name=">>dev_announce [messages]", value="Announce messages.", inline=False)
@@ -69,9 +69,9 @@ async def dev_announce(ctx, *, msg):
         await ctx.send(f"```FrontierBot Update:\n{msg}```")
     else: 
         await ctx.send("Sorry! You DO NOT have the permission.")
-'''@bot.event
-async def on_raw_reaction_add(data):
-    print(data.emoji)'''
+# @bot.event
+# async def on_raw_reaction_add(data):
+#     print(data.emoji)
 
 for filename in os.listdir("./cmds"):
     if filename.endswith(".py"):

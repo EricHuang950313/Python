@@ -10,8 +10,7 @@ with open("read_info.json", "r", encoding="utf8") as j_file:
 class text(Cog_Extension):
     @commands.command()
     async def F(self, ctx, user_name):
-        guild = self.bot.get_guild(855062319036760104)
-        for member in guild.members:
+        for member in ctx.guild.members:
             if user_name == str(member)[:-5]:
                 await ctx.send(f"{member.mention} {j_data['F']}")  
             else:

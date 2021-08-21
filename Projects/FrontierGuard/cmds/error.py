@@ -14,7 +14,7 @@ class error(Cog_Extension):
             await ctx.send("Command NOT FOUND! (errorCODE=001)")
             await ctx.send("Try\">>help\" for checking commands.")
         else:
-            await ctx.send("Exception! (errorCODE=002)")
+            await ctx.send(f"ExceptionType: {exception}, (errorCODE=002)")
             await ctx.send("This is a exception that is out of except.")
             await ctx.send("Please take a screenshot, describe the situation and send them to the following email:")
             await ctx.send("songzhi313@gmail.com")
