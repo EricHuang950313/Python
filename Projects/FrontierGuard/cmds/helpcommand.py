@@ -10,7 +10,8 @@ class helpcommand(Cog_Extension):
             await ctx.send("Command NOT FOUND! (errorCODE=001)")
             await ctx.send("Try\">>help\" for checking commands.")
         else:
-            embed=discord.Embed(title="ＵＳＥＲ  ＧＵＩＤＥ", description="\">>help\" command helps you easily get hang of using the bot.\n<Ver1.6.0Beta>", color=0xffca57)
+            embed=discord.Embed(title="ＵＳＥＲ  ＧＵＩＤＥ", description="\">>help\" command helps you easily get hang of using the bot.", color=0xffca57)
+            embed.add_field(name="VERSION", value="<Ver1.9.0Beta>", inline=False)
             embed.add_field(name="Ⅰ. ANNOUNCEMENT", value=">>help tba", inline=False)
             embed.add_field(name="Ⅱ. ECONOMY", value=">>help eco", inline=False)
             embed.add_field(name="Ⅲ. ENCYCLOPEDIA", value=">>help ency", inline=False)
