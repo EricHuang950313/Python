@@ -6,7 +6,8 @@ from core.class_setting import Cog_Extension
 class helpcommand(Cog_Extension):
     @commands.group(invoke_without_command=True)
     async def help(self, ctx):
-        if ctx.message.content[5:] not in ["tba", "eco", "ency", "pic", "eC", "help"]:
+        print(ctx.message.content[6:])
+        if ctx.message.content[6:] not in ["tba", "eco", "ency", "pic", "eC", ""]:
             await ctx.send("Command NOT FOUND! (errorCODE=001)")
             await ctx.send("Try\">>help\" for checking commands.")
         else:
