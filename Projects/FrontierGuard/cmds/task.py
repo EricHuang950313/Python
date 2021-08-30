@@ -23,7 +23,7 @@ class task(Cog_Extension):
                     API_URL = "<PantryURL>"
                     response = requests.get(API_URL)
                     new_data = {"record": 0, "FrontierGuard#5696": True}
-                    update = requests.put(API_URL, json=new_data)
+                    update = requests.post(API_URL, json=new_data)
                     await asyncio.sleep(1)
                 else:
                     await asyncio.sleep(1)
@@ -63,7 +63,7 @@ class task(Cog_Extension):
                         await msg.add_reaction(DIGIT_LIST[data["record"]])
                     else:
                         pass
-                update = requests.put(API_URL, json=data)
+                update = requests.post(API_URL, json=data)
         else:
             pass
 
