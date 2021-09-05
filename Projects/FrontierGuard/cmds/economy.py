@@ -1,6 +1,7 @@
 import discord, os, json, asyncio, pymongo, random, math
 from discord.ext import commands
 from pymongo import MongoClient
+import requests as re
 from datetime import datetime, timezone, timedelta
 from core.class_setting import Cog_Extension
 
@@ -318,6 +319,44 @@ class economy(Cog_Extension):
                         await ctx.send(f"Is that our guild's member?")
                 else:
                     await ctx.send(f"How could you rob yourself? Use your brain!")
+    
+    @commands.Cog.listener()
+    async def on_message(self, msg):
+        if msg.content[:11] == ">>interbank" or msg.content[:10] == "8==D inter":
+            await asyncio.sleep(1.5)
+            API_URL = "<PantryURL Com>"
+            common_data = re.get(API_URL).json()
+            if common_data["CtoF"] == {}:
+                pass
+            else:
+                await msg.channel.send("Working...")
+                cluster = MongoClient("<mongoDB URL>")
+                database = cluster["database_discordFG"] 
+                collection = database["collection_discordFG"]
+                if msg.content[:10] == "8==D inter":
+                    if collection.count_documents({"_id": msg.author.id}, limit = 1) == 0:
+                        await msg.channel.send("You didn't register here!")
+                    else:
+                        user_data = collection.find_one({"_id":msg.author.id})
+                        user_data["wallet"] += common_data["CtoF"][str(msg.author.id)]
+                        collection.update_one({"_id": msg.author.id}, {"$set": user_data})
+                        await msg.channel.send("Action was done!")
+                        re.post(API_URL, json={"CtoF":{},"FtoC":{}})
+                if msg.content[:11] == ">>interbank":
+                    if collection.count_documents({"_id": msg.author.id}, limit = 1) == 0:
+                        await msg.send("You didn't register here!")
+                    else:
+                        user_data = collection.find_one({"_id":msg.author.id})
+                        if (msg.content[12:]).isdigit() == False:
+                            await msg.channel.send("Please Input a digit!")
+                        elif int(msg.content[12:])<=0 or int(msg.content[12:])>=user_data["wallet"]:
+                            await msg.channel.send("Please Check the range!")
+                        else:
+                            user_data["wallet"] -= int(msg.content[12:])
+                            collection.update_one({"_id": msg.author.id}, {"$set": user_data})
+                            common_data["FtoC"] = {str(msg.author.id):int(msg.content[12:])}
+                            re.post(API_URL, json=common_data)
+                            await msg.channel.send("Action was done!")
 
 
 def setup(bot):

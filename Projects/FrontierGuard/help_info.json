@@ -1,0 +1,34 @@
+{
+    "title":{
+        "general":"ＵＳＥＲ  ＧＵＩＤＥ",
+        "tba":"ANNOUCEMENT",
+        "eco":"ECONOMY",
+        "ency":"ENCYCLOPEDIA",
+        "pic":"PICTURE",
+        "eC":"ErrorCODE"
+    },
+    "general":{
+        "name":["O. VERSION", "Ⅰ. ANNOUNCEMENT", "Ⅱ. ECONOMY", "Ⅲ. ENCYCLOPEDIA", "Ⅳ. PICTURE", "S. errorCODE"],
+        "content":["<Ver1.9.3Beta>", ">>help tba", ">>help eco", ">>help ency", ">>help pic", ">>help eC"]
+    },
+    "tba":{
+        "name":[">>F [a member]", ">>saysub [input]"],
+        "content":["Bot will say something to [a member] if you think [a member]'s action is idiot.", "Bot will say [input] instead of you."]
+    },
+    "eco":{
+        "name":[">>register", ">>deposit", ">>to", ">>work", ">>give [a member] [$amount]", ">>rob [bank]or[a member]"],
+        "content":["Register an account.", "Check your account's deposit.", "Transfer $ between bank and wallet.", "Work for 60~90mins to earn 150~250 $.", "Give [a member] [amount]$.", "Rob some money from the bank or [a member]."]
+    },
+    "ency":{
+        "name":[">>gayboi"],
+        "content":["Encyclopedia of gayboy."]
+    },
+    "pic":{
+        "name":[">>ty", ">>winnie"],
+        "content":["AKA emoji \"❤️\" or \"😍\".", "CN Winnie."]
+    },
+    "eC":{
+        "name":["errorCODE starts with 0 (Command input error):", "errorCODE starts with 1 (Economy user input error):", "errorCODE starts with 2 (Background tasks system error):"],
+        "content":["errorCODE=001--Command not found error.\nerrorCODE=002--Exception error.","errorCODE=101--Out of time error.\nerrorCODE=102--Value incorrect error.","errorCODE=201--FOR GOODMORNING/GOODNIGHT: Same ranking if deviation in 1.5 second."]
+    }
+}

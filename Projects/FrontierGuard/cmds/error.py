@@ -11,8 +11,11 @@ class error(Cog_Extension):
         # if hasattr(ctx.command, "on_error"):
         #     return
         if isinstance(exception, commands.errors.CommandNotFound):
-            await ctx.send("Command NOT FOUND! (errorCODE=001)")
-            await ctx.send("Try\">>help\" for checking commands.")
+            if ctx.message.content[:11] == ">>interbank":
+                pass
+            else:
+                await ctx.send("Command NOT FOUND! (errorCODE=001)")
+                await ctx.send("Try\">>help\" for checking commands.")
         else:
             await ctx.send(f"ExceptionType: {exception}, (errorCODE=002)")
             await ctx.send("This is a exception that is out of except.")

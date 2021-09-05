@@ -20,7 +20,7 @@ class task(Cog_Extension):
             self.channel = self.bot.get_channel(855062319435087872)
             while not self.bot.is_closed():
                 if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
-                    API_URL = "<PantryURL>"
+                    API_URL = "<PantryURL FG>"
                     response = requests.get(API_URL)
                     new_data = {"record": 0, "FrontierGuard#5696": True}
                     update = requests.post(API_URL, json=new_data)
@@ -32,7 +32,7 @@ class task(Cog_Extension):
     @commands.Cog.listener()
     async def on_message(self, msg):
         if ((int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200 or (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000) and msg.content in ["Goodmorning", "早安", "おはようございます", "Goodnight", "晚安", "おやすみなさい"]:
-            API_URL = "<PantryURL>"
+            API_URL = "<PantryURL FG>"
             DIGIT_LIST = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
             response = requests.get(API_URL)
             data = response.json()
