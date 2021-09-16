@@ -1,37 +1,30 @@
 <template>
-  <div>
-    <p>Home page</p>
-    <p>Random number from backend: {{ randomNumber }}</p>
-    <button @click="getRandom">New random number</button>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
   </div>
+  <router-view/>
 </template>
 
-<script>
-import axios from 'axios'
-
-export default {
-    data () {
-        return {
-            randomNumber: 0
-        }
-    },
-    methods: {
-        getRandom () {
-            this.randomNumber = this.getRandomFromBackend()
-        },
-        getRandomFromBackend () {
-            const path = 'http://localhost:5000/random'
-            axios.get(path)
-            .then(response => {
-            this.randomNumber = response.data.randomNumber
-            })
-            .catch(error => {
-            console.log(error)
-            })
-        },
-        created () {
-            this.getRandom()
-        }
-    }
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-</script>
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>
