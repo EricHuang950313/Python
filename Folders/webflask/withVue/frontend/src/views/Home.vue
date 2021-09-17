@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import Data from '@/components/data.vue'
+import Data from '@/components/data_from.vue'
 
 export default {
-  name: 'Home',
+  name: 'from',
   components: {
     Data
   }
