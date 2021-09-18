@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder = "../frontend/public/index.html")
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/handler", methods=["GET", "POST"])
-def random_number():
+def handler():
   if request.method == "GET":
     response = {"r_num": randint(1, 100)}
     return jsonify(response)
