@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/">FROM</router-link> |
-    <router-link to="/about">TO</router-link>
+    <router-link to="/get">GET</router-link> |
+    <router-link to="/send">SEND</router-link>
   </div>
   <router-view/>
 </template>

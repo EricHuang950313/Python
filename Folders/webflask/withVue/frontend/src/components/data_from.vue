@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>Home page</p>
-    <p>Random number from backend: {{ randomNumber }}</p>
+    <p>Get page</p>
     <button @click="getRandom">New random number</button>
+    <p>Random number from backend: {{ randomNumber }}</p>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
       this.randomNumber = this.getRandomFromBackend()
     },
     getRandomFromBackend () {
-      const path = 'http://localhost:5000/random'
+      const path = 'http://localhost:5000/handler'
       axios.get(path)
         .then(response => {
           this.randomNumber = response.data.r_num
@@ -29,9 +29,6 @@ export default {
           console.log(error)
         })
     }
-  },
-  created () {
-    this.getRandom()
   }
 }
 </script>
