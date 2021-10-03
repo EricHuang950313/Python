@@ -65,7 +65,8 @@ export default {
   position: relative;
 }
 img {
-  clip-path: inset(0 round 100px);
+  border-radius: 10em;
+  border: solid 0.2em black;
   width: 10%;
   position: absolute;
   right: 10%;
@@ -73,7 +74,7 @@ img {
 }
 form {
     max-width: 420px;
-    margin: 70px 50px;
+    margin: 5% 7%;
     background: #ffffff;
     text-align: left;
     padding: 40px;
