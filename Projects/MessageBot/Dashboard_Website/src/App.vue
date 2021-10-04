@@ -51,19 +51,6 @@ export default {
   color: #777;
   margin-top: 60px;
 }
-.bg {
-  background-image: url("../pic.jpg");
-  border-top: solid 1em #3b2406;
-  border-bottom: solid 1em #3b2406;
-  margin: 0;
-  width: 100%;
-  height: 700px;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  background-size: cover; 
-  -webkit-background-size: cover;
-  position: relative;
-}
 img {
   border-radius: 10em;
   border: solid 0.2em black;
@@ -74,7 +61,7 @@ img {
 }
 form {
     max-width: 420px;
-    margin: 5% 7%;
+    margin: 7% auto;
     background: #ffffff;
     text-align: left;
     padding: 40px;
