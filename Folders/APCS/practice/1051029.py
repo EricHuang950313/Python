@@ -48,20 +48,20 @@ class Practice():
     base = [0]*3
     for i in range(1, data[0][0]+1):
       for j in range(9):
-        if data[j][0] < data[0][0] and i == data[0][0]:
+        if (data[j][0] < data[0][0]) and (i == data[0][0]):
           break
         if data[j][i] == "HR":
-          base = [0]*3
           score += base[0]+base[1]+base[2]+1
+          base = [0]*3
         elif data[j][i] == "3B":
-          base = [0, 0, 1]
           score += base[0]+base[1]+base[2]
+          base = [0, 0, 1]
         elif data[j][i] == "2B":
-          base = [0, 1, base[1]] 
           score += base[1]+base[2]
+          base = [0, 1, base[0]] 
         elif data[j][i] == "1B":
-          base = [1, base[0], base[1]]
           score += base[2]
+          base = [1, base[0], base[1]]
         elif data[j][i] == "FO" or "GO" or "SO":
           inning_out += 1
           if inning_out == 3:
@@ -69,6 +69,8 @@ class Practice():
             inning_out = 0
           out -= 1
           if out == 0:
+            break
+      if out == 0:
             break
     print(score)
           
@@ -88,10 +90,10 @@ practice = Practice()
 # n, m, k = map(int, user_nmk)
 # practice.Third_KBomb(n, m, k)
 #4
-fl = []
-for i in range(9):
-  user_input = input().split()
-  fl += [list(map(str, user_input))]
-  fl[i][0] = int(fl[i][0])
-out = int(input())
-practice.Forth_BaseballGame(fl, out)
+# fl = []
+# for i in range(9):
+#   user_input = input().split()
+#   fl += [list(map(str, user_input))]
+#   fl[i][0] = int(fl[i][0])
+# out = int(input())
+# practice.Forth_BaseballGame(fl, out)
