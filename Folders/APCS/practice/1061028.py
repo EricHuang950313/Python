@@ -40,6 +40,22 @@ class Practice():
         now = 0 if now==1 else 1
       status, count, nowindex = True, 0, 0
     print(maxx)
+    
+  def Third_TreeAnalyses(self):
+    pass
+
+  def Forth_Stacking(self, n, w, f):
+    items = [list(map(int, [w[i], f[i]])) for i in range(len(w))]
+    for i in range(n-1):
+      for j in range(n-1-i):
+        if items[j][0]*items[j+1][1] > items[j+1][0]*items[j][1]:
+          items[j], items[j+1] = items[j+1], items[j]
+    print(items)
+    summ, minn = 0, 0
+    for k in range(n-1):
+      summ += items[k][0]
+      minn += summ*items[k+1][1]
+    print(minn)
 
 practice = Practice()
 #1
@@ -53,3 +69,10 @@ practice = Practice()
 #   print(1)
 # else:
 #   practice.Second_AlternatingStrings(a, b)
+#3
+practice.Third_TreeAnalyses()
+#4
+# n = int(input())
+# w = input().split()
+# f = input().split()
+# practice.Forth_Stacking(n, w, f)  
