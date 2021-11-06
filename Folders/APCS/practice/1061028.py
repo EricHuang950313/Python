@@ -41,8 +41,25 @@ class Practice():
       status, count, nowindex = True, 0, 0
     print(maxx)
     
-  def Third_TreeAnalyses(self):
-    pass
+  def Third_TreeAnalyses(self, n, data):
+    def nodeh(data, node):
+      biggest = 0
+      if data[node-1][1] == 0:
+        return 0
+      else:
+        for i in range(2, data[node-1][1]+2):
+          temp = nodeh(data, data[node-1][i])+1
+          biggest = max(temp, biggest)
+        return biggest
+    root = total = highest = 0
+    for i in range(1, n+1):
+      hi = nodeh(data, i)
+      if hi > highest:
+        highest = hi
+        root = i
+      total += hi
+    print(root)
+    print(total)
 
   def Forth_Stacking(self, n, w, f):
     items = [list(map(int, [w[i], f[i]])) for i in range(len(w))]
@@ -70,7 +87,15 @@ practice = Practice()
 # else:
 #   practice.Second_AlternatingStrings(a, b)
 #3
-practice.Third_TreeAnalyses()
+# n = int(input())
+# data = []
+# for i in range(n):
+#   user_input = input().split()
+#   data += [[i+1, int(user_input[0])]]
+#   if int(user_input[0]) > 0:
+#     for j in range(2, int(user_input[0])+2):
+#       data[i] += [int(user_input[j-1])]
+# practice.Third_TreeAnalyses(n, data)
 #4
 # n = int(input())
 # w = input().split()
