@@ -20,7 +20,7 @@ class task(Cog_Extension):
             self.channel = self.bot.get_channel(855062319435087872)
             while not self.bot.is_closed():
                 if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
-                    API_URL = "<PantryURL FG>"
+                    API_URL = "<PantryURL>"
                     response = requests.get(API_URL)
                     new_data = {"record": 0, "FrontierGuard#5696": True}
                     update = requests.post(API_URL, json=new_data)
@@ -31,8 +31,10 @@ class task(Cog_Extension):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if ((int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200 or (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000) and msg.content in ["Goodmorning", "早安", "おはようございます", "Goodnight", "晚安", "おやすみなさい"]:
-            API_URL = "<PantryURL FG>"
+        time = int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M"))
+        content = [["Goodmorning", "早安", "おはようございます"], ["Goodnight", "晚安", "おやすみなさい"]]
+        if (time > 600 and time < 1200 or time > 2000) and (msg.content in content[0] or msg.content in content[1]):
+            API_URL = "<PantryURL>"
             DIGIT_LIST = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
             response = requests.get(API_URL)
             data = response.json()
@@ -40,12 +42,12 @@ class task(Cog_Extension):
                 if author == str(msg.author):
                     break
             else:
-                if data["record"] == 0 and msg.content in ["Goodmorning", "早安", "おはようございます"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))<1200:
+                if data["record"] == 0 and msg.content in content[0] and time > 600 and time < 1200:
                     await msg.add_reaction("👑")
                     await msg.channel.send("Goodmorning! 早安! おはようございます! ")
                     data["record"] = 1 
                     data[str(msg.author)] = True
-                elif data["record"] == 0 and msg.content in ["Goodnight", "晚安", "おやすみなさい"] and (int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M")))>2000:
+                elif data["record"] == 0 and msg.content in content[1] and time > 2000:
                     await msg.add_reaction("👑")
                     await msg.channel.send("Goodnight! 晚安! おやすみなさい! ")
                     data["record"] = 1 
@@ -55,7 +57,7 @@ class task(Cog_Extension):
                     data[str(msg.author)] = True
                     await msg.add_reaction(DIGIT_LIST[1])
                     await msg.add_reaction(DIGIT_LIST[0])
-                else:
+                elif (msg.content in content[0] and time > 600 and time < 1200) or (msg.content in content[1] and time > 2000):
                     data["record"] = data["record"] + 1
                     data[str(msg.author)] = True
                     if len(str(data["record"])) == 1:

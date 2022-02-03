@@ -322,9 +322,9 @@ class economy(Cog_Extension):
     
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if msg.content[:11] == ">>interbank" or msg.content[:10] == "8==D inter":
+        if msg.content[:11] == ">>interbank" or msg.content[:9] == "tur inter":
             await asyncio.sleep(1.5)
-            API_URL = "<PantryURL Com>"
+            API_URL = ""
             common_data = re.get(API_URL).json()
             if common_data["CtoF"] == {}:
                 pass
@@ -333,7 +333,7 @@ class economy(Cog_Extension):
                 cluster = MongoClient("<mongoDB URL>")
                 database = cluster["database_discordFG"] 
                 collection = database["collection_discordFG"]
-                if msg.content[:10] == "8==D inter":
+                if msg.content[:9] == "tur inter":
                     if collection.count_documents({"_id": msg.author.id}, limit = 1) == 0:
                         await msg.channel.send("You didn't register here!")
                     else:

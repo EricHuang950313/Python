@@ -13,18 +13,18 @@ bot = commands.Bot(command_prefix=">>", help_command=None, intents=intents)
 async def on_ready():
     print(">>System:Bot is online.")
 
-@bot.event
-async def on_member_join(member):
-    # print(f"{member} join!" )
-    channel = bot.get_channel(855062319050260514)
-    await channel.send(f">>{member} join!")
-    await channel.send(">>Hi")
-    await channel.send(">>Nice to see you!")
-@bot.event
-async def on_member_remove(member):
-    # print(f"{member} remove!" )
-    channel = bot.get_channel(855062319050260514)
-    await channel.send(f"{member} leaved just now O.o")
+# @bot.event
+# async def on_member_join(member):
+#     # print(f"{member} join!" )
+#     channel = bot.get_channel(855062319050260514)
+#     await channel.send(f">>{member} join!")
+#     await channel.send(">>Hi")
+#     await channel.send(">>Nice to see you!")
+# @bot.event
+# async def on_member_remove(member):
+#     # print(f"{member} remove!" )
+#     channel = bot.get_channel(855062319050260514)
+#     await channel.send(f"{member} leaved just now O.o")
 
 # @bot.command()
 # async def load(ctx, extension):
