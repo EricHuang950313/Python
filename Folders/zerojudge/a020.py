@@ -9,5 +9,3 @@ if sum % 10 ==0:
     print('real')
 else:
     print('fake')
-# for i in data:
-#   print(data[i])
