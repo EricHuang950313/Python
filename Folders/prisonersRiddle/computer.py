@@ -1,4 +1,6 @@
 from itertools import permutations
+import matplotlib.pyplot as plt
+
 
 def run(p:tuple, j:int, goal:int):
   # Find the loop
@@ -15,6 +17,7 @@ if __name__ == "__main__":
   prisoners = list(permutations(prisoners))
   # loops = [[] for i in range(len(prisoners))]  # be observed when testing in small range
   statistics = [0, 0]  # [<=amount/2, >amount/2]
+  statistics_detail = [0 for i in range(amount)]
   with open("result.txt", mode="w") as f:
     for i in range(len(prisoners)):
       loop = []  # check in order not to repeat(1)
@@ -30,5 +33,14 @@ if __name__ == "__main__":
           break
       else:
         statistics[0] += 1
+      statistics_detail[len(max(loops, key=len).split("/"))-1] += 1
       f.write(str(loops) + "\n")  # save the process into result.txt
-  print(f"{statistics} --> P(success)=1-{statistics[1]/sum(statistics):.2f}={1-(statistics[1]/sum(statistics)):.2f}")
+  print(f"{statistics} {statistics_detail}\n{[i/sum(statistics) for i in statistics]} {[i/sum(statistics_detail) for i in statistics_detail]}")
+  print(f"--> P(success)=1-{statistics[1]/sum(statistics):.2f}={1-(statistics[1]/sum(statistics)):.2f}")
+
+  plt.figure(num=f"Prisoners-{amount}")
+  plt.bar([i+1 for i in range(amount)], [i/sum(statistics_detail) for i in statistics_detail], width=0.3)
+  plt.xticks(range(1, amount+1, 1))
+  plt.xlabel("Longest Loop")
+  plt.ylabel("Probability")
+  plt.show()
