@@ -13,10 +13,9 @@ def run(p:tuple, j:int, goal:int):
 
 if __name__ == "__main__":
   amount = int(input("Prisoners amount:"))
-  prisoners = [i for i in range(1, amount+1)]
-  prisoners = list(permutations(prisoners))
+  prisoners = list(permutations(range(1, amount+1)))
   statistics = [0, 0]  # [<=amount/2, >amount/2]
-  statistics_detail = [0 for i in range(amount)]
+  statistics_detail = [0 for i in range(amount)]  # details of every loops
   with open("result.txt", mode="w") as f:
     for i in range(len(prisoners)):
       loop = []  # check in order not to repeat(1)
@@ -33,6 +32,8 @@ if __name__ == "__main__":
         statistics[0] += 1
       statistics_detail[len(max(loops, key=len).split("/"))-1] += 1
       f.write(str(loops) + "\n")  # save the process into result.txt
+
+
   print(f"{statistics} {statistics_detail}")
   print(f"{[i/sum(statistics) for i in statistics]} ")
   print(f"{[i/sum(statistics_detail) for i in statistics_detail]}")
