@@ -33,11 +33,12 @@ if __name__ == "__main__":
         statistics[0] += 1
       statistics_detail[len(max(loops, key=len).split("/"))-1] += 1
       f.write(str(loops) + "\n")  # save the process into result.txt
-  print(f"""{statistics} {statistics_detail}\n
-            {[i/sum(statistics) for i in statistics]} 
-            {[i/sum(statistics_detail) for i in statistics_detail]}""")
-  print(f"""--> P(success)=1-{statistics[1]/sum(statistics):.2f}
-        ={1-(statistics[1]/sum(statistics)):.2f}""")
+  print(f"{statistics} {statistics_detail}")
+  print(f"{[i/sum(statistics) for i in statistics]} ")
+  print(f"{[i/sum(statistics_detail) for i in statistics_detail]}")
+  print(f"--> P(success)=1-{statistics[1]/sum(statistics):.2f}")
+  print(f"={1-(statistics[1]/sum(statistics)):.2f}")
+  
 
   plt.figure(num=f"Prisoners-{amount}")
   plt.bar([i+1 for i in range(amount)], [i/sum(statistics_detail) for i in statistics_detail], width=0.3)
