@@ -18,13 +18,13 @@ if __name__ == "__main__":
   statistics_detail = [0 for i in range(amount)]  # details of every loops
   with open("result.txt", mode="w") as f:
     for i in range(len(prisoners)):
-      loop = []  # check in order not to repeat(1)
-      loops = []  # save the result(2)
+      loop = []  # check in order not to repeat
+      loops = []  # save the result
       for j in range(len(prisoners[i])):
-        if j+1 in loop:  # (1)
+        if j+1 in loop:
           continue
-        loops += [run(prisoners[i], j, j+1)]  # (2)
-      for k in loops:  # (2)
+        loops += [run(prisoners[i], j, j+1)]
+      for k in loops: 
         if len(k.split("/")) > (amount/2):
           statistics[1] += 1
           break
