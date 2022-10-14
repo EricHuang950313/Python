@@ -20,7 +20,7 @@ class task(Cog_Extension):
             self.channel = self.bot.get_channel(855062319435087872)
             while not self.bot.is_closed():
                 if datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "120005" or datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M%S") == "000005":
-                    API_URL = "https://getpantry.cloud/apiv1/pantry/4feb1fac-6e16-4e25-9b43-12d4a2b7df5e/basket/discord_frontierguard"
+                    API_URL = "getpantry"
                     response = requests.get(API_URL)
                     new_data = {"record": 0, "FrontierGuard#5696": True}
                     update = requests.post(API_URL, json=new_data)
@@ -34,7 +34,7 @@ class task(Cog_Extension):
         time = int(datetime.now(timezone(timedelta(hours=+8))).strftime("%H%M"))
         content = [["Goodmorning", "早安", "おはようございます"], ["Goodnight", "晚安", "おやすみなさい"]]
         if (time > 600 and time < 1200 or time > 2000) and (msg.content in content[0] or msg.content in content[1]):
-            API_URL = "https://getpantry.cloud/apiv1/pantry/4feb1fac-6e16-4e25-9b43-12d4a2b7df5e/basket/discord_frontierguard"
+            API_URL = "getpantry"
             DIGIT_LIST = ["0️⃣", "1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
             response = requests.get(API_URL)
             data = response.json()
